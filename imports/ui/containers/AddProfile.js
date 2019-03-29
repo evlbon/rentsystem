@@ -1,12 +1,27 @@
 import React from 'react';
 import { Form, Input, Icon, Button } from 'antd';
-
+import {withRouter} from "react-router-dom";
+import { withTracker } from 'meteor/react-meteor-data';
 const FormItem = Form.Item;
 
 class ProfileForm extends React.Component {
 
   handleSubmit = (e) => {
-    this.props.history.push('/userpage/');
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log(values)
+        Meteor.call('editProfile',this.props.currentUser._id,values,(err)=>{
+          if(err)
+            alert(err);
+          else{
+            this.props.history.push('/userpage/');
+          }
+
+        });
+      }
+    });
+    // this.props.history.push('/userpage/');
   }
 
 
@@ -14,6 +29,7 @@ class ProfileForm extends React.Component {
   render() {
 
 
+    const { getFieldDecorator } = this.props.form;
     return (
       <div style={{background:"white", height:1000}}>
 
@@ -31,20 +47,34 @@ class ProfileForm extends React.Component {
 
           <div className="register">
             <h1>Register</h1>
-            <Form onSubmit={this.handleSubmit} className="login-form">
+
+            <Form onSubmit={(event) => this.handleSubmit(event)} className="login-form">
+
 
               <FormItem label="Secret Question">
-                <Input name='secretQuestion' placeholder="Secret Question" />
+                {getFieldDecorator('question', {
+                  rules: [],
+                })(
+                  <Input placeholder="Secret Question" />
+                )}
               </FormItem>
 
 
               <FormItem label="Answer">
-                <Input name='answer' placeholder="Answer" />
+                {getFieldDecorator('answer', {
+                  rules: [],
+                })(
+                  <Input placeholder="Answer" />
+                )}
             </FormItem>
 
 
               <FormItem label="Phone">
-                <Input  name="phone" placeholder="phone" />
+                {getFieldDecorator('phone', {
+                  rules: [],
+                })(
+                  <Input placeholder="Phone" />
+                )}
               </FormItem>
 
 
@@ -52,7 +82,7 @@ class ProfileForm extends React.Component {
               <FormItem>
 
               <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-                Register
+                Change profile
               </Button>
 
               </FormItem>
@@ -68,6 +98,11 @@ class ProfileForm extends React.Component {
 
 
 
-const WarpedProfileForm = Form.create({ name: 'normal_login' })(ProfileForm);
+const WarpedProfileForm = Form.create({ name: 'normal_profile' })(ProfileForm);
 
-export default WarpedProfileForm
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(WarpedProfileForm);

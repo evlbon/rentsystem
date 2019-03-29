@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
+import Profile from "../models/profile";
 
 
 Meteor.methods({
@@ -11,23 +12,46 @@ Meteor.methods({
       });
     }
   },
-
-
   'addUser'(username,password,callback) {
     Accounts.createUser({
       username,
       password,
     },callback);
+
+    const user = Meteor.users.findOne({username})
+
+    let profile = new Profile({
+      userID: user._id,
+      isBanned: false,
+      type: 'renter',
+    })
+
+    profile.save();
   },
 
   'delUser'(username,callback) {
     Meteor.users.remove({username})
   }
-
-
 });
 
 
-Meteor.publish('users', function () {
-  return Meteor.users.find({});
+
+Meteor.methods({
+  'editProfile'(id,values) {
+    console.log(values)
+    const profile = Profile.findOne({userID:id});
+
+    if(values.phone)
+      profile.phone = values.phone;
+    if(values.question)
+      profile.question = values.question;
+    if(values.answer)
+      profile.answer = values.answer;
+    if(values.type)
+      profile.type = values.type;
+    if(values.isBanned)
+      profile.isBanned = values.isBanned;
+
+    profile.save();
+  },
 });

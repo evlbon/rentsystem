@@ -27,7 +27,6 @@ class RegistrationForm extends React.Component {
         });
       }
     });
-    e.preventDefault();
   }
 
   handleConfirmBlur = (e) => {

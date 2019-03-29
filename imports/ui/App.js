@@ -36,7 +36,7 @@ class App extends Component {
   // }
 
   render() {
-    Meteor.call('addAdmin');
+    // Meteor.call('addAdmin');
     // Meteor.loginWithPassword('admin', 'admin');
     // if (this.state.current && this.state.current.is_banned)
     //   return(<div style={{align:'center'}}>
