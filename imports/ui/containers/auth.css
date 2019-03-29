@@ -1,0 +1,55 @@
+.uraccount {
+    padding: 20px;
+    overflow: hidden;
+    font: normal 30px/1 Arial, Gadget, sans-serif;
+
+    color: rgba(255,255,255,1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+
+.login {
+    padding: 50px;
+    width: 50%;
+    height: 350px;
+    display: inline-block;
+    float: left;
+
+    background: rgba(0,0,0,0.05);
+}
+
+.login2 {
+    min-width: 300px;
+    display: inline-block;
+    padding: 50px;
+    width: 40%;
+    height: 350px;
+}
+
+.register {
+    min-width: 300px;
+    padding: 50px 10% 50px 10%;
+    background: rgba(0,0,0,0.05);
+}
+
+.userpage{
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 80px;
+    margin: 70px 20px 20px 20px;
+    overflow: hidden;
+    border: none;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font: normal 30px/1 Arial Black, Gadget, sans-serif;
+    color: rgba(255,255,255,1);
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background: rgba(0,0,0,0.41);
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
