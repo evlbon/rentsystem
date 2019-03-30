@@ -5,11 +5,11 @@ import { Route } from 'react-router-dom';
 // import ArticleDetail from './containers/ArticleDetailView';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
-import MainPage from "./containers/MainPage";
+import MainPage from "./containers/Main";
 import AccountPage from "./containers/AccountPage";
 import WarpedProfileForm from "./containers/AddProfile";
-// import ChangePassword from "./containers/ChangePasswor";
 import UserList from "./containers/UserList";
+import WarpedChangePassword from "./containers/ChangePasswor";
 
 const BaseRouter = () => (
     <div>
@@ -20,7 +20,7 @@ const BaseRouter = () => (
         <Route exact path='/signup/' component={Signup} />
         <Route exact path='/userpage/' component={AccountPage} />
         <Route exact path='/setprofile/' component={WarpedProfileForm} />
-      {/*<Route exact path='/changePass/' component={ChangePassword} />*/}
+      <Route exact path='/changePass/' component={WarpedChangePassword} />
 
       <Route exact path='/allusers/' component={UserList} />
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button} from "antd";
+import {Avatar, Button, Icon} from "antd";
 
 import { withTracker } from 'meteor/react-meteor-data';
 import Profile from "../../models/profile";
@@ -31,25 +31,49 @@ class UserPage extends React.Component {
       const profile = Profile.findOne({});
       return (
         <div className='userpage' style={{height:1000, background: 'white', color: 'black'}}>
-          {/*<h1>This page is not completed</h1>*/}
-          <div style={{margin: 40, display:"inline-block"}}><Avatar shape="square" size={300} icon="user" /></div>
 
-          <div style={{display:"inline-block"}}>
+          <div style={{height:'40%', overflow: 'hidden'}}>
+            <div style={{margin:'-200px 0 0 0'}}>
+              <img src='https://i.ibb.co/89zJtwS/Untitled-1.png' alt="1" width="100%"/>
+            </div>
+            <div className='hello'>
+              Hello {this.props.currentUser.username}<br/>
+              <a onClick={this.handleLogout.bind(this)} className='logout'>Logout <Icon type="arrow-right" /></a>
 
-            Username is {this.props.currentUser.username}<br/>
-            Phone {profile.phone}<br/>
 
-            <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleLogout.bind(this)}>
-              Logout
-            </Button><br/>
+            </div>
 
-            <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangePass.bind(this)}>
-              Change password
-            </Button><br/>
+          </div>
 
-            <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangeProfile.bind(this)}>
-              Change profile info
-            </Button><br/>
+
+
+          <div className='userpage2'>
+            <div style={{margin: '0 0 0 10%', float:'left'}}>
+
+              <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ORDER HISTORY</h1>
+              You haven't placed any orders yet.
+
+
+
+
+            </div>
+
+            <div style={{float:'right', padding:'0 20% 0 0'}}>
+
+              <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ACCOUNT DETAILS</h1>
+
+              Username <br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{this.props.currentUser.username}</h1>
+              Phone<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.phone}</h1>
+
+              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangePass.bind(this)}>
+                Change password
+              </Button><br/>
+
+              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangeProfile.bind(this)}>
+                Change profile info
+              </Button><br/>
+            </div>
+
           </div>
 
 

@@ -35,21 +35,59 @@
 }
 
 .userpage{
+    padding: 84px 0 0 0;
+    min-height: 1000px;
+    font: normal 30px/1 Arial Black, Gadget, sans-serif;
+}
+
+
+.hello {
+    z-index: 10;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    padding: 80px;
-    margin: 70px 20px 20px 20px;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
     overflow: hidden;
     border: none;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    font: normal 30px/1 Arial Black, Gadget, sans-serif;
+    font: normal 200%/0.5 Arial Black, Gadget, sans-serif;
+
     color: rgba(255,255,255,1);
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    background: rgba(0,0,0,0.41);
-    -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
-    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
+
+
+
+.logout {
+    margin: -100px;
+    top: 25%;
+    color: white;
+
+    font: normal 15px/0 Arial Black, Gadget, sans-serif;
+}
+.logout:hover{
+    color: gainsboro;
+}
+
+
+
+
+.userpage2{
+    font: normal 20px/2 Verdana , Gadget, sans-serif;
+    margin: -20px 5% 0 5%;
+    padding: 70px 0 0 0;
+    color: #1e1e1e;
+    height: 400px;
+
+    overflow: hidden;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(201,201,201,0.37);
 }

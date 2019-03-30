@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
 import Profile from "../models/profile";
+import {updateObject} from "./utility";
 
 
 Meteor.methods({
@@ -18,7 +19,7 @@ Meteor.methods({
       password,
     },callback);
 
-    const user = Meteor.users.findOne({username})
+    const user = Meteor.users.findOne({username});
 
     let profile = new Profile({
       userID: user._id,
@@ -40,21 +41,10 @@ Meteor.methods({
 
 Meteor.methods({
   'editProfile'(id,values) {
-    const profile = Profile.findOne({userID:id});
-    console.log(values)
+    let profile = Profile.findOne({userID:id});
+    console.log(values);
 
-    if(values.phone)
-      profile.phone = values.phone;
-    if(values.question)
-      profile.question = values.question;
-    if(values.answer)
-      profile.answer = values.answer;
-    if(values.type)
-      profile.type = values.type;
-    if(values.isBanned)
-      profile.isBanned = values.isBanned;
-    if(values.rating !== undefined)
-      profile.rating = values.rating;
+    profile = new Profile({...updateObject(profile,values)});
 
     profile.save();
   },
