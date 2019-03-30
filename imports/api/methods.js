@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
 import Profile from "../models/profile";
+import Item from "../models/item";
 
 
 Meteor.methods({
@@ -59,3 +60,13 @@ Meteor.methods({
     profile.save();
   },
 });
+
+
+//
+// Meteor.methods({
+//   'addItem'(name, callback) {
+//     Item.create({
+//       name
+//     }, callback);
+//   },
+// });
