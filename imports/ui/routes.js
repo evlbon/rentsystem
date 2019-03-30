@@ -9,8 +9,7 @@ import MainPage from "./containers/MainPage";
 import AccountPage from "./containers/AccountPage";
 import WarpedProfileForm from "./containers/AddProfile";
 // import ChangePassword from "./containers/ChangePasswor";
-// import UserList from "./containers/UserList";
-// import EdidProfileForm from "./containers/EditProfile";
+import UserList from "./containers/UserList";
 
 const BaseRouter = () => (
     <div>
@@ -23,8 +22,7 @@ const BaseRouter = () => (
         <Route exact path='/setprofile/' component={WarpedProfileForm} />
       {/*<Route exact path='/changePass/' component={ChangePassword} />*/}
 
-      {/*<Route exact path='/allusers/' component={UserList} />*/}
-      {/*<Route exact path='/editProfile/' component={EdidProfileForm} />*/}
+      <Route exact path='/allusers/' component={UserList} />
 
     </div>
 );

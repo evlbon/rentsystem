@@ -1,47 +1,29 @@
 import React from 'react';
-import axios from 'axios';
 import {
   Skeleton, Switch, Card, Icon, Avatar,
 } from 'antd';
-import UserCard from "./UserCard";
+import UserCard from "../components/UserCard";
+import {withRouter} from "react-router-dom";
+import { withTracker } from 'meteor/react-meteor-data';
+import Profile from "../../models/profile";
 
 const { Meta } = Card;
 
 class UserList extends React.Component {
 
-  state = {
-    users: [],
-    current: [],
-
-  }
-
-
-  componentDidMount() {
-    axios.get('http://localhost:8000/profiles/')
-      .then(res => {
-        this.setState({
-          users: res.data
-        });
-      });
-
-    axios.get(`http://localhost:8000/profiles/${localStorage.getItem('user')}/`)
-      .then(res => {
-        this.setState({
-          current: res.data
-        });
-      })
-  }
 
   render() {
-    console.log(this.state.current)
+    // console.log(this.state.current)
     return (
       <div style={{minHeight:"900px", background:"white", padding:"70px 0 0 0"}}>
 
 
         {
-          this.state.users.map((user)=>(
-            <UserCard key={user.username} user={user} current={this.state.current}/>
-          ))
+          this.props.profiles && this.props.currentUser?
+
+          this.props.profiles.map((user)=>(
+            <UserCard key={user.username} user={user} current={this.props.profiles.find((p)=>{return p.userID===this.props.currentUser._id})}/>
+          )):""
         }
 
 
@@ -50,4 +32,10 @@ class UserList extends React.Component {
   }
 }
 
-export default UserList;
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+    profiles: Profile.find({}).fetch(),
+  };
+})(UserList);

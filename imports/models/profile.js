@@ -33,6 +33,15 @@ const Profile = Class.create({                  // Main class of users
       type: String,
       optional: true,
     },
+    rating: {
+      type: Number,
+      optional: true,
+    },
+
+    username: {
+      type: String,
+      optional: true,
+    },
 
     isBanned: {
       type: Boolean,

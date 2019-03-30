@@ -24,7 +24,9 @@ Meteor.methods({
       userID: user._id,
       isBanned: false,
       type: 'renter',
-    })
+      rating: 0,
+      username: user.username,
+    });
 
     profile.save();
   },
@@ -38,8 +40,8 @@ Meteor.methods({
 
 Meteor.methods({
   'editProfile'(id,values) {
-    console.log(values)
     const profile = Profile.findOne({userID:id});
+    console.log(values)
 
     if(values.phone)
       profile.phone = values.phone;
@@ -51,6 +53,8 @@ Meteor.methods({
       profile.type = values.type;
     if(values.isBanned)
       profile.isBanned = values.isBanned;
+    if(values.rating !== undefined)
+      profile.rating = values.rating;
 
     profile.save();
   },

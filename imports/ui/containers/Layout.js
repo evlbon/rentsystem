@@ -15,7 +15,7 @@ class CustomLayout extends React.Component {
 
 
     render() {
-      console.log(this.props.users);
+      // console.log(this.props.users);
 
         return (
           <Layout>
