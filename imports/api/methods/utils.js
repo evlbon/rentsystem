@@ -1,5 +1,5 @@
-import {Item} from "../models/item";
-import {Profile} from "../models/profile"
+import {Item} from "../../models/item";
+import {Profile} from "../../models/profile"
 import {Meteor} from "meteor/meteor";
 
 Meteor.methods({

@@ -1,19 +1,21 @@
-import {Item} from "../models/item";
+import {Item} from "../../models/item";
 import {Meteor} from "meteor/meteor";
 
 let _itemID = 0;
 
 Meteor.methods({
 
-    'addItem' ({ ownerID, name, price=30, cost=50, keywords=[] }) {
+    'addItem' ({ ownerID, itemName, price=30, deposit=50, category, keywords=[], description }) {
 
         let item = Item.insert({
             itemID: _itemID,
-            name: name,
+            itemName: itemName,
             ownerID: ownerID,
             price: price,
-            cost: cost,
+            deposit: deposit,
+            category: category,
             keywords: keywords,
+            description: description,
         });
         _itemID++;
 

@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
-import Profile from "../models/profile";
+import Profile from "../../models/profile";
 import {updateObject} from "./utility";
-import Items from "../models/item";
+import Items from "../../models/item";
 
 
 Meteor.methods({
@@ -80,11 +80,13 @@ Meteor.methods({
   'items.insert'(values) {
 
     let item = new Items({
+      itemID: values.itemID,
       itemName: values.name,
-      usernameOwner: Meteor.users.findOne(this.userId).username,
+      OwnerID: this.userID,
       price: values.price,
       deposit: values.deposit,
       keywords: values.keywords,
+      category: values.category,
       description: values.description
     });
 
@@ -96,18 +98,26 @@ Meteor.methods({
   },
 
   'items.edit'(values) {
-    const item = Items.findOne({_id:values.id});
-    console.log(item)
+    const item = Items.findOne({_id: values.id});
+    console.log(item);
 
-    if(values.name)
-      item.itemName = values.name;
-    if(values.price)
+    if (values.itemID)
+      item.itemID = values.itemID;
+    if (values.itemName)
+      item.itemName = values.itemName;
+    if (values.ownerID)
+      item.ownerID = values.ownerID;
+    if (values.renterID)
+      item.renterID = values.renterID;
+    if (values.price)
       item.price = values.price;
-    if(values.deposit)
+    if (values.deposit)
       item.deposit = values.deposit;
-    if(values.keywords)
+    if (values.keywords)
       item.keywords = values.keywords;
-    if(values.description)
+    if (values.category)
+      item.category = values.category;
+    if (values.description)
       item.description = values.description;
 
     item.save();
