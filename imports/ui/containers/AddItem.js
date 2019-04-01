@@ -14,7 +14,7 @@ class ItemForm extends React.Component {
               if(err)
                 alert(err);
               else{
-                this.props.history.push('/items/');
+                this.props.history.push('/all_items/');
               }
     
             });
@@ -24,98 +24,80 @@ class ItemForm extends React.Component {
 
 
       render() {
+      console.log("asddas")
 
 
         const { getFieldDecorator } = this.props.form;
         return (
-            <div style = {{background: "white", padding: "70px 0 0 0"}}>
-
-            <Form onSubmit={(event) => this.handleSubmit(event)} className="login-form">
-              <FormItem label="Item Name">
-              {getFieldDecorator('name', {
-                  rules: [],
-                })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                    placeholder="Item Name" />
-                )}
-              </FormItem>
+          <div style={{background:"white", height:1000}}>
 
 
-              <FormItem label="Price">
-              {getFieldDecorator('price', {
-                  rules: [],
-                })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                   placeholder="Price" />)}
-            </FormItem>
+            <div style={{height:"15%"}}/>
+
+            <div className="uraccount">
+              <h1>Add new Item</h1>
+            </div>
 
 
-              <FormItem label="Deposit">
-              {getFieldDecorator('deposit', {
-                  rules: [],
-                })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}} 
-                    placeholder="Deposit" />)}
-              </FormItem>
+
+            <div style={{margin:"0 20% 0 20%"}}>
 
 
-              <FormItem label="Keywords">
-              {getFieldDecorator('keywords', {
-                  rules: [],
-                })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                    placeholder="Keywords" />)}
-              </FormItem>
+              <div className="register">
+                <Form onSubmit={(event) => this.handleSubmit(event)} className="login-form">
+                  <FormItem label="Item Name">
+                    {getFieldDecorator('name', {
+                      rules: [],
+                    })(
+                      <Input placeholder="Item Name" />
+                    )}
+                  </FormItem>
 
 
-              <FormItem label="Description">
-              {getFieldDecorator('description', {
-                  rules: [],
-                })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                  placeholder="Description" />)}
-              </FormItem>
+                  <FormItem label="Price">
+                    {getFieldDecorator('price', {
+                      rules: [],
+                    })(
+                      <Input placeholder="Price" />)}
+                  </FormItem>
 
-              <FormItem>
 
-                <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-                  ADD
-                </Button>
+                  <FormItem label="Deposit">
+                    {getFieldDecorator('deposit', {
+                      rules: [],
+                    })(
+                      <Input placeholder="Deposit" />)}
+                  </FormItem>
 
-              </FormItem>
 
-          </Form>
-</div>
+                  <FormItem label="Keywords">
+                    {getFieldDecorator('keywords', {
+                      rules: [],
+                    })(
+                      <Input placeholder="Keywords" />)}
+                  </FormItem>
+
+
+                  <FormItem label="Description">
+                    {getFieldDecorator('description', {
+                      rules: [],
+                    })(
+                      <Input placeholder="Description" />)}
+                  </FormItem>
+
+                  <FormItem>
+
+                    <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
+                      ADD
+                    </Button>
+
+                  </FormItem>
+
+                </Form>
+
+              </div>
+            </div>
+          </div>
 );
   }
 }
