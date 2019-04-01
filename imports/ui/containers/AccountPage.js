@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button} from "antd";
+import {Avatar, Button, Icon} from "antd";
 
 import { withTracker } from 'meteor/react-meteor-data';
 import Profile from "../../models/profile";
@@ -23,16 +23,6 @@ class UserPage extends React.Component {
     this.props.history.push('/setprofile/');
   }
 
-  handleDeletion(){
-
-    Meteor.call('delUser',this.props.currentUser.username,(err)=>{
-      if(err)
-        alert(err);
-      else
-        this.props.history.push('/');
-    });
-
-  }
 
   render() {
 
@@ -62,12 +52,9 @@ class UserPage extends React.Component {
 
               <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ORDER HISTORY</h1>
               You haven't placed any orders yet.
-
-
-
-          <div style={{display:"inline-block"}}>
-
             </div>
+
+
 
             <div style={{float:'right', padding:'0 20% 0 0'}}>
 

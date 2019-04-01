@@ -6,15 +6,7 @@
     color: rgba(255,255,255,1);
     text-align: center;
     -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;*/
-
-
-    padding-top: 40px;
-    font: normal 25px/1 Arial Black, Gadget, sans-serif;
-    text-align: center;
-    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    text-shadow: none ;
     text-shadow: none ;
 
 
@@ -144,7 +136,7 @@
 .myItems{
     width:20%;
     float: left;
-    background: rgba(0,0,0,0.21);
+    background: rgba(245, 245, 245, 0.3);
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
@@ -184,7 +176,7 @@
 }
 
 .buttons_of_account{
-    padding: 30px;
+    /*padding: 30px;*/
     padding-top:50px;
     width: 30%;
     height: 350px;

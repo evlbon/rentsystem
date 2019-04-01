@@ -20,7 +20,7 @@ class ItemList extends React.Component {
 
             <div>
             
-                <hr className="horizontalLine"></hr>
+                <hr className="horizontalLine"/>
 
                 <div className="information_about_my_item">
                     <p>Item Name 1</p>
@@ -33,7 +33,7 @@ class ItemList extends React.Component {
                     </Button>
                 </div>
 
-                <hr className="horizontalLine"></hr>
+                <hr className="horizontalLine"/>
                
                 <div className="information_about_my_item">
                     <p>Item Name 1</p>
