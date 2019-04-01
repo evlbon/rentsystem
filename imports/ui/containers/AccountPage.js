@@ -31,7 +31,7 @@ class UserPage extends React.Component {
 
 
     if(this.props.currentUser){
-      const profile = Profile.findOne({});
+      const profile = Profile.findOne({userID: this.props.currentUser._id});
       return (
         <div className='userpage' style={{height:1000, background: 'white', color: 'black'}}>
 
@@ -40,7 +40,7 @@ class UserPage extends React.Component {
               <img src='https://i.ibb.co/89zJtwS/Untitled-1.png' alt="1" width="100%"/>
             </div>
             <div className='hello'>
-              Hello {this.props.currentUser.username}<br/>
+              Hello {profile.firstName}<br/>
               <a onClick={this.handleLogout.bind(this)} className='logout'>Logout <Icon type="arrow-right" /></a>
 
 
@@ -57,9 +57,16 @@ class UserPage extends React.Component {
               You haven't placed any orders yet.
             </div>
             <div style={{float:'right', padding:'0 20% 0 0'}}>
+
               <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ACCOUNT DETAILS</h1>
+              First name<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.firstName}</h1>
+              Last name<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.lastName}</h1>
+
               Username <br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{this.props.currentUser.username}</h1>
+
               Phone<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.phone}</h1>
+
+
               <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangePass.bind(this)}>
                 Change password
               </Button><br/>
