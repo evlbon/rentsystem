@@ -1,14 +1,15 @@
 import {Item} from "../../models/item";
+import {Profile} from "../../models/profile"
 import {Meteor} from "meteor/meteor";
 
-let _itemID = 0;
 
 Meteor.methods({
 
-    'addItem' ({ ownerID, itemName, price=30, deposit=50, category, keywords=[], description }) {
+    'addItem' ({ itemID, ownerID, itemName, price=30, deposit=50, category, keywords=[], description }) {
 
+        console.log('start');
         let item = Item.insert({
-            itemID: _itemID,
+            itemID: itemID,
             itemName: itemName,
             ownerID: ownerID,
             price: price,
@@ -17,33 +18,31 @@ Meteor.methods({
             keywords: keywords,
             description: description,
         });
-        _itemID++;
 
-        console.log('qwqqe');
+        console.log('work');
         return item;
     },
 
-    'findByKeyword' ({ keyword }) {
-
-        return Item.findAll({keywords: keyword});
+    'findByKeyword' ({ keywords }) {
+        return Item.find({keywords: keywords});
     },
 
     'findByUsername' ({ username }) {
-        let user = Profile.findOne({username: username});
+        let user = Profile.find({username: username});
         if (user === undefined) {
             return undefined;
         }
         else {
-            return Item.findAll({ownerID: user.userID});
+            return Item.find({ownerID: user.userID});
         }
     },
 
     'findByOwner' ({ ownerID }) {
-        return Item.findAll({ownerID: ownerID});
+        return Item.find({ownerID: ownerID});
     },
 
     'rentableItems' () {
-        return Item.findAll({renterID: undefined});
+        return Item.find({renterID: undefined});
     }
 
 

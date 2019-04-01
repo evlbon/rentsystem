@@ -64,8 +64,8 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'editProfile'(id,values) {
-    let profile = Profile.findOne({userID:id});
+  'editProfile'(ID,values) {
+    let profile = Profile.findOne({userID:ID});
     console.log(values);
 
     profile = new Profile({...updateObject(profile,values)});
@@ -93,8 +93,8 @@ Meteor.methods({
     item.save();
   },
 
-  'items.remove'(item_Id) {
-    Items.remove({_id: item_Id})
+  'items.remove'(itemID) {
+    Items.remove({_id: itemID})
   },
 
   'items.edit'(values) {
