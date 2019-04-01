@@ -12,6 +12,7 @@ const Profile = Class.create({                  // Main class of users
       optional: true,
 
     },
+
     phone: {
       type: String,
       optional: true,
@@ -33,6 +34,7 @@ const Profile = Class.create({                  // Main class of users
       type: String,
       optional: true,
     },
+    
     rating: {
       type: Number,
       optional: true,
@@ -40,7 +42,22 @@ const Profile = Class.create({                  // Main class of users
 
     username: {
       type: String,
-      optional: true,
+      optional: false,
+    },
+
+    firstName: {
+      type: String,
+      optional: false,
+    },
+
+    lastName: {
+      type: String,
+      optional: false,
+    },
+
+    address: {
+      type: String,
+      optional: false,
     },
 
     isBanned: {

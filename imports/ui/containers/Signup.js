@@ -12,16 +12,18 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        Meteor.call('addUser',values.userName,values.password,(err)=>{
+        Meteor.call('addUser',
+        values.userName, 
+        values.email, 
+        values.phone,
+        values.address,
+        values.firstName,
+        values.lastName, (err)=>
+        {
           if(err)
             alert(err);
           else{
-            Meteor.loginWithPassword(values.userName, values.password,(err)=>{
-              if(!err)
-                this.props.history.push('/setprofile/');
-              else
-                alert(err)
-            });
+            this.props.history.push('/');
           }
 
         });
@@ -60,7 +62,99 @@ class RegistrationForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
 
     return (
-      <div style={{background:"white", height:1000}}>
+
+      <div>
+
+        <div className="small_elements">
+
+          <div >
+            <h1 className="uraccount">Registration</h1>
+          </div>
+
+          <div className="register">
+            <Form onSubmit={this.handleSubmit}>
+
+              <FormItem>
+                  {getFieldDecorator('userName', {
+                      rules: [{ required: true, message: 'Please input your username!' }],
+                  })(
+                      <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                  )}
+              </FormItem>
+
+              <FormItem>
+                {getFieldDecorator('email', {
+                  rules: [{
+                    type: 'email', message: 'The input is not valid E-mail!',
+                  }, {
+                    required: true, message: 'Please input your E-mail!',
+                  }],
+                })(
+                  <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
+                )}
+              </FormItem>
+
+              <FormItem>
+                {getFieldDecorator('phone', {
+                  rules: [],
+                })(
+                  <Input placeholder="Phone" />
+                )}
+              </FormItem>
+
+              <FormItem>
+                {getFieldDecorator('address', {
+                  rules: [],
+                })(
+                  <Input placeholder="Address" />
+                )}
+              </FormItem>
+
+              <FormItem>
+                {getFieldDecorator('firstName', {
+                  rules: [],
+                })(
+                  <Input placeholder="First Name" />
+                )}
+              </FormItem>
+
+              <FormItem>
+                {getFieldDecorator('lastName', {
+                  rules: [],
+                })(
+                  <Input placeholder="Last Name" />
+                )}
+              </FormItem>
+
+
+              <FormItem>
+
+                <Button type="primary" style={{marginRight: '10px'}} onClick={this.handleBack.bind(this)}>
+                  <Icon type="arrow-left" />LogIn
+                </Button>
+
+              <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
+                Register
+              </Button>
+
+              </FormItem>
+
+            </Form>
+
+          </div>
+
+
+
+        </div>
+
+
+
+          <div>
+            <img src="https://images.wallpaperscraft.ru/image/gora_snoubord_vershina_tuman_pokorenie_11541_1920x1080.jpg" width="100%" height="100%"/>
+          </div>
+     
+      
+        {/*<div style={{background:"white", height:1000}}>
 
 
         <div style={{height:"15%"}}/>
@@ -99,28 +193,37 @@ class RegistrationForm extends React.Component {
               </FormItem>
 
               <FormItem>
-                {getFieldDecorator('password', {
-                  rules: [{
-                    required: true, message: 'Please input your password!',
-                  }, {
-                    validator: this.validateToNextPassword,
-                  }],
+                {getFieldDecorator('phone', {
+                  rules: [],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                  <Input placeholder="Phone" />
                 )}
               </FormItem>
 
               <FormItem>
-                {getFieldDecorator('confirm', {
-                  rules: [{
-                    required: true, message: 'Please confirm your password!',
-                  }, {
-                    validator: this.compareToFirstPassword,
-                  }],
+                {getFieldDecorator('address', {
+                  rules: [],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" onBlur={this.handleConfirmBlur} />
+                  <Input placeholder="Address" />
                 )}
               </FormItem>
+
+              <FormItem>
+                {getFieldDecorator('firstName', {
+                  rules: [],
+                })(
+                  <Input placeholder="First Name" />
+                )}
+              </FormItem>
+
+              <FormItem>
+                {getFieldDecorator('lastName', {
+                  rules: [],
+                })(
+                  <Input placeholder="Last Name" />
+                )}
+              </FormItem>
+
 
               <FormItem>
 
@@ -139,6 +242,10 @@ class RegistrationForm extends React.Component {
           </div>
         </div>
       </div>
+                */}
+
+      </div>
+
     );
   }
 }

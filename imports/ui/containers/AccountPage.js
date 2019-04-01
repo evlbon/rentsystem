@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button, Icon} from "antd";
+import {Avatar, Button} from "antd";
 
 import { withTracker } from 'meteor/react-meteor-data';
 import Profile from "../../models/profile";
@@ -23,6 +23,16 @@ class UserPage extends React.Component {
     this.props.history.push('/setprofile/');
   }
 
+  handleDeletion(){
+
+    Meteor.call('delUser',this.props.currentUser.username,(err)=>{
+      if(err)
+        alert(err);
+      else
+        this.props.history.push('/');
+    });
+
+  }
 
   render() {
 
@@ -55,6 +65,7 @@ class UserPage extends React.Component {
 
 
 
+          <div style={{display:"inline-block"}}>
 
             </div>
 
