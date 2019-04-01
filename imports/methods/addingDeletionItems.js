@@ -40,6 +40,10 @@ Meteor.methods({
         return Item.findAll({ownerID: ownerID});
     },
 
+    'rentableItems' () {
+        return Item.findAll({renterID: undefined});
+    }
+
 
 });
 
