@@ -19,7 +19,7 @@ class ItemList extends React.Component {
             <h1 className="uraccount">My Items</h1>
 
             <div>
-            
+
                 <hr className="horizontalLine"/>
 
                 <div className="information_about_my_item">
@@ -34,7 +34,7 @@ class ItemList extends React.Component {
                 </div>
 
                 <hr className="horizontalLine"/>
-               
+
                 <div className="information_about_my_item">
                     <p>Item Name 1</p>
                     <p>Price</p>
@@ -47,7 +47,7 @@ class ItemList extends React.Component {
                 </div>
 
                 <hr className="horizontalLine"></hr>
-               
+
                 <div className="information_about_my_item" >
                     <p>Item Name 1</p>
                     <p>Price</p>
@@ -105,8 +105,8 @@ class ItemList extends React.Component {
                     Read info
                     </Button>
                 </div>
-            
-            </div>    
+
+            </div>
 
 
             </div>
@@ -128,4 +128,4 @@ export default withTracker(() => {
       currentUser: Meteor.user(),
     };
   })(ItemList);
-  
+

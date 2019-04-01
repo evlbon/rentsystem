@@ -3,7 +3,7 @@ import { Class } from 'meteor/jagi:astronomy';
 
 const Items = Class.create({   
   name: 'Items', 
-  collection: new Mongo.Collection('items'),
+  collection: new Meteor.Collection('items'),
   fields: {// fields that items will have and the type of this field
 
     itemName: {
