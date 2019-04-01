@@ -14,27 +14,37 @@ Meteor.methods({
       });
     }
   },
-  'addUser'(username, email, phone, address, firstName, lastName, callback) {
-    Accounts.createUser({
-      username,
-      email,
-    },callback);
 
-    const user = Meteor.users.findOne({username});
+
+
+
+
+
+
+  'addUser'(values,callback) {
+
+    Accounts.createUser({
+      username: values.username,
+      password: values.password,
+    },callback);
+    console.log(values.username);
+
+    const user = Meteor.users.findOne({username : values.username});
+
+
 
     let profile = new Profile({
       userID: user._id,
       isBanned: false,
-      phone: phone,
-      address: address,
-      firstName: firstName,
-      lastName: lastName,
+      phone: values.phone,
+      address: values.address,
+      firstName: values.firstName,
+      lastName: values.lastName,
       type: 'renter-owner',
       rating: 0,
-      username: user.username,
     });
 
-    Accounts.sendEnrollmentEmail(user._id);
+    // Accounts.sendEnrollmentEmail(user._id);
     profile.save();
   },
 

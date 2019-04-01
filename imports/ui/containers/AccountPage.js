@@ -56,25 +56,17 @@ class UserPage extends React.Component {
               <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ORDER HISTORY</h1>
               You haven't placed any orders yet.
             </div>
-
-
-
             <div style={{float:'right', padding:'0 20% 0 0'}}>
-
               <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ACCOUNT DETAILS</h1>
-
               Username <br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{this.props.currentUser.username}</h1>
               Phone<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.phone}</h1>
-
               <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangePass.bind(this)}>
                 Change password
               </Button><br/>
-
               <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangeProfile.bind(this)}>
                 Change profile info
               </Button><br/>
             </div>
-
           </div>
         </div>
       );

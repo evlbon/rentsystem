@@ -45,18 +45,24 @@
 }
 
 
+
 .hello {
     z-index: 10;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    padding: 80px;
-    margin: 70px 20px 20px 20px;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
     overflow: hidden;
     border: none;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    font: normal 30px/1 Arial Black, Gadget, sans-serif;
+    font: normal 200%/0.5 Arial Black, Gadget, sans-serif;
+
     color: rgba(255,255,255,1);
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
