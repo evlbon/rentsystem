@@ -21,7 +21,7 @@ Meteor.methods({
         return item;
     },
 
-    'findByName' ({ keyword }) {
+    'findByKeyword' ({ keyword }) {
 
         return Item.findAll({keywords: keyword});
     },
@@ -34,6 +34,10 @@ Meteor.methods({
         else {
             return Item.findAll({ownerID: user.userID});
         }
+    },
+
+    'findByOwner' ({ ownerID }) {
+        return Item.findAll({ownerID: ownerID});
     },
 
 
