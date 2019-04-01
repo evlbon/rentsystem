@@ -1,36 +1,47 @@
 .uraccount {
-    padding: 20px;
+    /*padding: 20px;
     overflow: hidden;
     font: normal 30px/1 Arial, Gadget, sans-serif;
 
     color: rgba(255,255,255,1);
     text-align: center;
     -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;*/
+
+
+    padding-top: 40px;
+    font: normal 25px/1 Arial Black, Gadget, sans-serif;
+    text-align: center;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
+    text-shadow: none ;
+    text-shadow: none ;
+    
+    
+
 }
 
 
 .login {
-    padding: 50px;
+    padding: 30px;
     width: 50%;
     height: 350px;
     display: inline-block;
     float: left;
-
-    background: rgba(0,0,0,0.05);
 }
 
 .login2 {
     min-width: 300px;
     display: inline-block;
-    padding: 50px;
+    padding: 30px;
     width: 40%;
     height: 350px;
 }
 
 .register {
     min-width: 300px;
-    padding: 50px 10% 50px 10%;
+    width: 100%;
+    padding: 20px;
     background: rgba(0,0,0,0.05);
 }
 
@@ -48,8 +59,104 @@
     color: rgba(255,255,255,1);
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    background: rgba(0,0,0,0.41);
     -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
     box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
+
+.account_information{
+    padding: 30px;
+    width: 50%;
+    height: 350px;
+    display: inline-block;
+    text-align: center;
+    float: left;
+    text-shadow: none ;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.elements{
+    position: absolute;
+    top: 100px;
+    width:50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background: rgba(0,0,0,0.21);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.small_elements{
+    position: absolute;
+    top: 100px;
+    width:40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    background: rgba(0,0,0,0.21);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.items_elements{
+    padding-left:30px;
+    position: absolute;
+    top: 80px;
+    width:100%;
+}
+
+.myItems{
+    width:20%;
+    float: left;
+    background: rgba(0,0,0,0.21);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.horizontalLine{
+    border: none;  
+    border-bottom: 1px solid rgba(0,0,0,0.41);
+}
+
+.information_about_my_item{
+    padding: 20px;
+    text-align: center;
+}
+
+.item_to_rent{
+    padding: 20px;
+    background-color: rgba(0,0,0,0.21);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    width: 20%;
+    margin-left: 10px; 
+    margin-bottom: 10px; 
+    display: inline-block;
+    text-align: center;
+}
+
+.list_of_items{
+    width: 80%;
+    float: right;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.label{
+    text-shadow: none ;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.buttons_of_account{
+    padding: 30px;
+    padding-top:50px;
+    width: 30%;
+    height: 350px;
+    display: inline-block;
+    float: center;
+    text-shadow: none ;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+
 }

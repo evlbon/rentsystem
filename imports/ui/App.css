@@ -46,7 +46,6 @@
   -webkit-border-radius: 10px;
   border-radius: 10px;
   font: normal 30px/1 Arial Black, Gadget, sans-serif;
-
   color: rgba(255,255,255,1);
   text-align: center;
   -o-text-overflow: ellipsis;
@@ -72,3 +71,4 @@
     transform: rotate(360deg);
   }
 }
+

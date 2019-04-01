@@ -69,7 +69,7 @@ class CustomLayout extends React.Component {
 
 
             <Footer style={{ textAlign: 'center', color: 'white' }}>
-              Rent system ©2019 Created by Eugene Bondarev
+              Rent system ©2019 Created by BS17-2-5: Eugene Bondarev, Dmitry Kochetov, Vyacheslav Vasilev, Aleksandra Shchetinina, Anastasia Pichka
             </Footer>
           </Layout>
 
