@@ -26,6 +26,17 @@ Meteor.methods({
         return Item.findAll({keywords: keyword});
     },
 
+    'findByUsername' ({ username }) {
+        let user = Profile.findOne({username: username});
+        if (user === undefined) {
+            return undefined;
+        }
+        else {
+            return Item.findAll({ownerID: user.userID});
+        }
+    },
+
+
 });
 
 //Meteor.call('addItem', {ownerID:12, name:'velosiped', price=10, keywords=['q', 'ww']});
