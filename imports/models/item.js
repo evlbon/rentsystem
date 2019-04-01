@@ -1,7 +1,7 @@
-import { Class } from 'meteor/jagi:astronomy';
+import {Class} from 'meteor/jagi:astronomy';
 
 
-const Item = Class.create( {
+export const Item = Class.create({
     name: 'Item',
     collection: new Meteor.Collection('items'),
 
@@ -32,6 +32,20 @@ const Item = Class.create( {
             type: Number,
             optional: true,
             decimal: true,
+        },
+
+        ownerID: {
+            type: String,
+        },
+
+        renterID: {
+            type: String,
+            optional: true,
+        },
+
+        keywords: {
+            type: [String],
+            default: [],
         },
 
         /*
@@ -71,8 +85,10 @@ const Item = Class.create( {
         }
 
          */
-    }
+    },
 
+    helpers: {}
 });
+
 
 export default Item
