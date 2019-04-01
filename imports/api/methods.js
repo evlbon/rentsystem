@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
 import Profile from "../models/profile";
+import Items from "../models/item";
 
 
 Meteor.methods({
@@ -58,4 +59,43 @@ Meteor.methods({
 
     profile.save();
   },
+});
+
+Meteor.methods({
+  'items.insert'(values) {
+
+    let item = new Items({
+      itemName: values.name,
+      usernameOwner: Meteor.users.findOne(this.userId).username,
+      price: values.price,
+      deposit: values.deposit,
+      keywords: values.keywords,
+      description: values.description
+    });
+
+    item.save();
+  },
+
+  'items.remove'(item_Id) {
+    Items.remove({_id: item_Id})
+  },
+
+  'items.edit'(itemId, values) {
+    const item = Items.findOne({_id:itemId});
+    console.log(item)
+
+    if(values.name)
+      item.itemName = values.name;
+    if(values.price)
+      item.price = values.price;
+    if(values.deposit)
+      item.deposit = values.deposit;
+    if(values.keywords)
+      item.keywords = values.keywords;
+    if(values.description)
+      item.description = values.description;
+
+    item.save();
+  },
+
 });

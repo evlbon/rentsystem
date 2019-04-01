@@ -4,10 +4,13 @@ import {Avatar, Button} from "antd";
 import { withTracker } from 'meteor/react-meteor-data';
 import Profile from "../../models/profile";
 
+import  Items  from '../../models/item';
+import Item from '../components/Item';
+
+import { Meteor } from 'meteor/meteor';
+
 
 class UserPage extends React.Component {
-
-
 
   handleLogout(){
     Meteor.logout();
@@ -51,8 +54,6 @@ class UserPage extends React.Component {
               Change profile info
             </Button><br/>
           </div>
-
-
         </div>
       );
     }

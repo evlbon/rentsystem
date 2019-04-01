@@ -7,18 +7,20 @@ import { Meteor } from 'meteor/meteor';
 import  Items  from '../../models/item';
  
 // App component - represents the whole app
-class ItemListView extends Component {
+class MyItems extends Component {
      
 
   renderItems() {
-    return this.props.items.map((item) => (
+    myItems = this.props.items;
+    myItems = myItems.filter(item => item.usernameOwner === this.props.currentUser.username)
+    return myItems.map((item) => (
       <Item key={item._id} item={item} />
     ));
   }
 
 
   render() {
-
+    if(this.props.currentUser){
     return (
       <div style = {{background: "white", padding: "70px 0 0 0"}}>
         <ul style = {{ margin: 0, padding: 0, background: "white"}}>
@@ -27,7 +29,11 @@ class ItemListView extends Component {
       </div>
     );
   }
+  else
+  return("")
 }
+}
+
 
 
 export default withTracker(() => {
@@ -35,4 +41,4 @@ export default withTracker(() => {
         items: Items.find({}).fetch(),
         currentUser: Meteor.user(),
     };
-  })(ItemListView);
+  })(MyItems);
