@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input, Icon, Button, InputNumber } from 'antd';
 import { Meteor } from 'meteor/meteor';
 
 const FormItem = Form.Item;
@@ -56,20 +56,19 @@ class ModifyItem extends React.Component {
               </FormItem>
 
 
-              <FormItem label="Price">
+              <FormItem label="Price and Deposit">
                 {getFieldDecorator('price', {
                   rules: [],
                 })(
-                  <Input placeholder="Price" />)}
-              </FormItem>
+                  <InputNumber placeholder="Price" />)}
 
-
-              <FormItem label="Deposit">
                 {getFieldDecorator('deposit', {
                   rules: [],
                 })(
-                  <Input placeholder="Deposit" />)}
+                  <InputNumber placeholder="Deposit" />)}
+
               </FormItem>
+
 
 
               <FormItem label="Keywords">
