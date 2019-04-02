@@ -38,7 +38,7 @@ class Item extends Component {
         >
           <Meta
             title={this.props.item.itemName}
-            description="100$/Day"
+            description={`${this.props.item.price}$`}
           />
 
           {/*<p>*/}
