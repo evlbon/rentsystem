@@ -45,7 +45,7 @@ class CustomLayout extends React.Component {
                   }
 
 
-                  <Menu.Item key="2">Search</Menu.Item>
+                  <Menu.Item key="2"> <Link to="/search/">Search</Link></Menu.Item>
                 </Menu>
               </div>
 

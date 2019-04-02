@@ -13,8 +13,19 @@ class AllItems extends React.Component {
 
 
     return (
+      <div style={{background: "white", padding: "100px 0 20px 0", minHeight:1000}}>
+        <div style={{textAlign: "center", font: "font: normal 50px/1 Arial Black, Gadget, sans-serif"}}>
+          <h1>RENTSHOP</h1>
+        </div>
 
-      <ItemList items={this.props.items}  currentUser={this.props.currentUser}/>
+
+        <div style={{margin: "0 30px 0 30px"}}>
+          <ItemList items={this.props.items}  currentUser={this.props.currentUser}/>
+        </div>
+
+      </div>
+
+
     );
   }
 }

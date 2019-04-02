@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Icon, Button } from 'antd';
+import { withTracker } from 'meteor/react-meteor-data';
+import Items from "../../models/item";
 const FormItem = Form.Item;
 
 class ItemForm extends React.Component {
@@ -9,8 +11,8 @@ class ItemForm extends React.Component {
      
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            console.log(values)
-            Meteor.call('items.insert',values,(err)=>{
+            console.log(values);
+            Meteor.call('addItem',values,this.props.currentUser._id,(err)=>{
               if(err)
                 alert(err);
               else{
@@ -24,15 +26,13 @@ class ItemForm extends React.Component {
 
 
       render() {
-      console.log("asddas")
-
 
         const { getFieldDecorator } = this.props.form;
         return (
-          <div style={{background:"white", height:1000}}>
+          <div style={{background:"white", minHeight:1000, paddingBottom: 50}}>
 
 
-            <div style={{height:"15%"}}/>
+            <div style={{height:100}}/>
 
             <div className="uraccount">
               <h1>Add new Item</h1>
@@ -40,13 +40,14 @@ class ItemForm extends React.Component {
 
 
 
-            <div style={{margin:"0 20% 0 20%"}}>
+            <div style={{margin:"0 20% 100px 20%"}}>
 
 
               <div className="register">
                 <Form onSubmit={(event) => this.handleSubmit(event)} className="login-form">
+
                   <FormItem label="Item Name">
-                    {getFieldDecorator('name', {
+                    {getFieldDecorator('itemName', {
                       rules: [],
                     })(
                       <Input placeholder="Item Name" />
@@ -85,6 +86,14 @@ class ItemForm extends React.Component {
                       <Input placeholder="Description" />)}
                   </FormItem>
 
+                  <FormItem label="Category">
+                    {getFieldDecorator('category', {
+                      rules: [],
+                    })(
+                      <Input placeholder="Category" />)}
+                  </FormItem>
+
+
                   <FormItem>
 
                     <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
@@ -103,4 +112,9 @@ class ItemForm extends React.Component {
 }
 const WarpedItemForm = Form.create({ name: 'normal_item' })(ItemForm);
 
-export default (WarpedItemForm);
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(WarpedItemForm);

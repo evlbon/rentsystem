@@ -77,21 +77,6 @@ Meteor.methods({
 
 
 Meteor.methods({
-  'items.insert'(values) {
-
-    let item = new Items({
-      itemID: values.itemID,
-      itemName: values.name,
-      OwnerID: this.userID,
-      price: values.price,
-      deposit: values.deposit,
-      keywords: values.keywords,
-      category: values.category,
-      description: values.description
-    });
-
-    item.save();
-  },
 
   'items.remove'(itemID) {
     Items.remove({_id: itemID})

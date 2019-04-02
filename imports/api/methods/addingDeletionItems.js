@@ -1,49 +1,40 @@
-import {Item} from "../../models/item";
+import Items from "../../models/item";
 import {Profile} from "../../models/profile"
 import {Meteor} from "meteor/meteor";
+import {updateObject} from "./utility";
 
 
 Meteor.methods({
 
-    'addItem' ({ itemID, ownerID, itemName, price=30, deposit=50, category, keywords=[], description }) {
+    'addItem' ( values,OwnerID ) {
 
-        console.log('start');
-        let item = Item.insert({
-            itemID: itemID,
-            itemName: itemName,
-            ownerID: ownerID,
-            price: price,
-            deposit: deposit,
-            category: category,
-            keywords: keywords,
-            description: description,
+        console.log(OwnerID);
+
+        let item = Items.insert({
+            itemName: values.itemName,
+            OwnerID,
+            price: parseInt(values.price),
+            deposit: parseInt(values.deposit),
+            category: values.category,
+            keywords: values.keywords,
+            description: values.description,
         });
-
-        console.log('work');
-        return item;
     },
 
-    'findByKeyword' ({ keywords }) {
-        return Item.find({keywords: keywords});
-    },
+  'delItem'(itemID) {
+    Items.remove({_id: itemID})
+  },
 
-    'findByUsername' ({ username }) {
-        let user = Profile.find({username: username});
-        if (user === undefined) {
-            return undefined;
-        }
-        else {
-            return Item.find({ownerID: user.userID});
-        }
-    },
 
-    'findByOwner' ({ ownerID }) {
-        return Item.find({ownerID: ownerID});
-    },
+  'editItem'(values,id) {
+    let item = Items.findOne({_id: id});
+    console.log(item);
 
-    'rentableItems' () {
-        return Item.find({renterID: undefined});
-    }
+    item = new Items({...updateObject(item,values)});
+
+    item.save();
+  },
+
 
 
 });

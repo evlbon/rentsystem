@@ -12,13 +12,6 @@ class ItemList extends React.Component {
     if (this.props.currentUser) {
 
       return (
-        <div style={{background: "white", padding: "100px 0 20px 0", minHeight:1000}}>
-          <div style={{textAlign: "center", font: "font: normal 50px/1 Arial Black, Gadget, sans-serif"}}>
-            <h1>RENTSHOP</h1>
-          </div>
-
-
-          <div style={{margin: "0 30px 0 30px"}}>
             <List
               itemLayout="vertical"
               size="large"
@@ -38,8 +31,6 @@ class ItemList extends React.Component {
                 </List.Item>
               )}
             />
-          </div>
-        </div>
       )
     }
 

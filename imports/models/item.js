@@ -42,9 +42,9 @@ const Items = Class.create({
         },
 
         keywords: {
-            type: [String],
+            type: String,
             optional: true,
-            default: [],
+            default: undefined,
 
         },
 

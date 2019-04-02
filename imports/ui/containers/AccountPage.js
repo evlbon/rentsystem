@@ -73,6 +73,11 @@ class UserPage extends React.Component {
               <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangeProfile.bind(this)}>
                 Change profile info
               </Button><br/>
+
+              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={()=>{this.props.history.push('/my_items/')}}>
+                My Items
+              </Button><br/>
+
             </div>
           </div>
         </div>

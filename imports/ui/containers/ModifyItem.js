@@ -8,17 +8,15 @@ class ModifyItem extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
- 
-    // Find the text field via the React ref
-    //const name = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log(this.props.match.params.itemId)
-        Meteor.call('items.edit', this.props.match.params.itemId, values,(err)=>{
+        console.log(values);
+        Meteor.call('editItem',values,this.props.match.params.id,(err)=>{
           if(err)
             alert(err);
           else{
-            this.props.history.push('/items/');
+            this.props.history.push(`/item/${this.props.match.params.id}/`);
           }
 
         });
@@ -27,105 +25,89 @@ class ModifyItem extends React.Component {
   }
 
 
-
   render() {
-    const { getFieldDecorator } = this.props.form;
+    console.log(this.props.match.params.id)
 
+    const { getFieldDecorator } = this.props.form;
     return (
-      <div style={{background:"white", height:1000}}>
-      
-        <div style={{margin:"0 20% 0 20%"}}>
+      <div style={{background:"white", minHeight:1000, paddingBottom: 50}}>
+
+
+        <div style={{height:100}}/>
+
+        <div className="uraccount">
+          <h1>Modify Item</h1>
+        </div>
+
+
+
+        <div style={{margin:"0 20% 100px 20%"}}>
 
 
           <div className="register">
-            <h1>Modify Item</h1>
-
             <Form onSubmit={(event) => this.handleSubmit(event)} className="login-form">
 
               <FormItem label="Item Name">
-              {getFieldDecorator('name', {
+                {getFieldDecorator('itemName', {
                   rules: [],
                 })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                    placeholder="Item Name" />
+                  <Input placeholder="Item Name" />
                 )}
               </FormItem>
 
 
               <FormItem label="Price">
-              {getFieldDecorator('price', {
+                {getFieldDecorator('price', {
                   rules: [],
                 })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                   placeholder="Price" />)}
-            </FormItem>
+                  <Input placeholder="Price" />)}
+              </FormItem>
 
 
               <FormItem label="Deposit">
-              {getFieldDecorator('deposit', {
+                {getFieldDecorator('deposit', {
                   rules: [],
                 })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}} 
-                    placeholder="Deposit" />)}
+                  <Input placeholder="Deposit" />)}
               </FormItem>
 
 
               <FormItem label="Keywords">
-              {getFieldDecorator('keywords', {
+                {getFieldDecorator('keywords', {
                   rules: [],
                 })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                    placeholder="Keywords" />)}
+                  <Input placeholder="Keywords" />)}
               </FormItem>
 
 
               <FormItem label="Description">
-              {getFieldDecorator('description', {
+                {getFieldDecorator('description', {
                   rules: [],
                 })(
-                  <Input style = {{ boxSizing: "border-box",
-                    padding: "10px 0",
-                    background: "transparent",
-                    border: "none",
-                    width: "100%",
-                    paddingRight: "80px",
-                    fontSize: "1em"}}
-                  placeholder="Description" />)}
+                  <Input placeholder="Description" />)}
               </FormItem>
+
+              <FormItem label="Category">
+                {getFieldDecorator('category', {
+                  rules: [],
+                })(
+                  <Input placeholder="Category" />)}
+              </FormItem>
+
 
               <FormItem>
 
+                <Button type="primary" onClick={()=>{this.props.history.push(`/item/${this.props.match.params.id}/`)}} style={{marginRight: '10px'}}>
+                  <Icon type={'left'}/>Back
+                </Button>
+
                 <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-                  SAVE CHANGES
+                  MODIFY
                 </Button>
 
               </FormItem>
 
-          </Form>
+            </Form>
 
           </div>
         </div>
