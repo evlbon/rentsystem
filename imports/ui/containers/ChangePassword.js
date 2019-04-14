@@ -30,7 +30,7 @@ class ChangePassword extends Component {
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
-      callback('Пароли не совпадают!');
+      callback('Password do not match!');
     } else {
       callback();
     }
@@ -72,7 +72,7 @@ class ChangePassword extends Component {
               <Form.Item>
                 {getFieldDecorator('oldPassword', {
                   rules: [{
-                    required: true, message: 'Пожалуйста, введите старый пароль!',
+                    required: true, message: 'Please, enter old password!',
                   }],
                 })(
                   <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Старый пароль" />
@@ -84,7 +84,7 @@ class ChangePassword extends Component {
               <Form.Item>
                 {getFieldDecorator('password', {
                   rules: [{
-                    required: true, message: 'Пожалуйста, введите новый пароль!',
+                    required: true, message: 'Please, enter new password!',
                   }, {
                     validator: this.validateToNextPassword,
                   }],
@@ -97,7 +97,7 @@ class ChangePassword extends Component {
               <Form.Item>
                 {getFieldDecorator('confirm', {
                   rules: [{
-                    required: true, message: 'Пожалуйста, повторите новый пароль!',
+                    required: true, message: 'Please, repeat new password!',
                   }, {
                     validator: this.compareToFirstPassword,
                   }],
