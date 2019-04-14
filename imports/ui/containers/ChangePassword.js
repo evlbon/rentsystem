@@ -109,7 +109,7 @@ class ChangePassword extends Component {
 
               <Form.Item>
                 <Button type="primary" htmlType="submit" >
-                  Изменить пароль
+                  Change password
                 </Button>
               </Form.Item>
 
