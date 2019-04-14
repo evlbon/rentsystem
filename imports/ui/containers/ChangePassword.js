@@ -75,7 +75,7 @@ class ChangePassword extends Component {
                     required: true, message: 'Please, enter old password!',
                   }],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Старый пароль" />
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Old password" />
                 )}
               </Form.Item>
 
@@ -89,7 +89,7 @@ class ChangePassword extends Component {
                     validator: this.validateToNextPassword,
                   }],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Новый пароль" />
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="New password" />
                 )}
               </Form.Item>
 
@@ -102,7 +102,7 @@ class ChangePassword extends Component {
                     validator: this.compareToFirstPassword,
                   }],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Повторите новый пароль" />
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Repeat new password" />
                 )}
               </Form.Item>
 
