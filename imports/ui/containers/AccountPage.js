@@ -54,7 +54,7 @@ class UserPage extends React.Component {
             <div style={{margin: '0 0 0 10%', float:'left'}}>
 
               <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ORDER HISTORY</h1>
-              You haven't placed any orders yet.
+              You have not placed any orders yet.
             </div>
             <div style={{float:'right', padding:'0 20% 0 0'}}>
 
