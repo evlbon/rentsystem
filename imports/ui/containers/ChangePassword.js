@@ -1,97 +1,55 @@
-import React from 'react';
-import { Form, Input, Icon, Button } from 'antd';
-//import axios from 'axios';
-//import { connect } from 'react-redux';
-//import { NavLink } from 'react-router-dom';
-//import * as actions from '../store/actions/auth';
+import React, { Component } from 'react';
+import {Breadcrumb, Button, List, Card, Form,Icon, Input} from "antd";
 
 import { withTracker } from 'meteor/react-meteor-data';
+import { Accounts } from 'meteor/accounts-base'
+import {Link} from "react-router-dom";
 
-const FormItem = Form.Item;
 
-class ChangePassword extends React.Component {
+class ChangePassword extends Component {
+  state = {
+    confirmDirty: false,
+  };
 
   handleSubmit = (e) => {
-    const p1 = e.target.elements.p1.value;
-    const p2 = e.target.elements.p2.value;
-
-    Meteor.call('chPassword', this.props.currentUser._id, p1, (err)=>{
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        Accounts.changePassword(values.oldPassword, values.password, (err)=>{
+          if(err)
+            alert(err);
+          else {
+            alert("Susses");
+            this.props.form.resetFields();
+          }
+        })
+      }
     });
+  };
 
-    this.props.history.push('/login/');
+  compareToFirstPassword = (rule, value, callback) => {
+    const form = this.props.form;
+    if (value && value !== form.getFieldValue('password')) {
+      callback('Password do not match!');
+    } else {
+      callback();
+    }
+  };
 
-  }
+  validateToNextPassword = (rule, value, callback) => {
+    const form = this.props.form;
+    if (value && this.state.confirmDirty) {
+      form.validateFields(['confirm'], { force: true });
+    }
+    callback();
+  };
 
-
-
-  /*test(){
-
-    axios.post('http://localhost:8000/rest-auth/password/reset/confirm/', {
-      token : localStorage.getItem('token'),
-      uid : "9",
-      new_password1: "8d2g1101",
-      new_password2: "8d2g1101",
-    })
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
-
-
-  }*/
 
 
   render() {
-
-   // this.test();
-    // console.log(localStorage.getItem('token'))
-
+    const { getFieldDecorator } = this.props.form;
 
     return (
-
-      <div>
-      <div className="small_elements">
-
-      <div >
-        <h1 className="uraccount">Change password</h1>
-      </div>
-
-
-      <div className="register">
-            <Form onSubmit={this.handleSubmit}>
-
-              <FormItem >
-                <Input name='p1' placeholder="New Password" />
-              </FormItem>
-
-
-              <FormItem >
-                <Input name='p2' placeholder="Repeat" />
-            </FormItem>
-
-
-
-              <FormItem>
-
-              <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-                Save
-              </Button>
-
-              </FormItem>
-
-            </Form>
-
-          </div>
-
-
-    </div>
-
-
-
-      <div>
-        <img src="https://images.wallpaperscraft.ru/image/gora_snoubord_vershina_tuman_pokorenie_11541_1920x1080.jpg" width="100%" height="100%"/>
-      </div>
-
-
-      {/*
       <div style={{background:"white", height:1000}}>
 
 
@@ -107,40 +65,64 @@ class ChangePassword extends React.Component {
 
 
           <div className="register">
-            <h1>Register</h1>
-            <Form onSubmit={this.handleSubmit}>
-
-              <FormItem label="New Password">
-                <Input name='p1' placeholder="New Password" />
-              </FormItem>
+            <h1>Change Password</h1>
+            <Form onSubmit={this.handleSubmit} className="login-form">
 
 
-              <FormItem label="Repeat">
-                <Input name='p2' placeholder="Repeat" />
-            </FormItem>
+              <Form.Item>
+                {getFieldDecorator('oldPassword', {
+                  rules: [{
+                    required: true, message: 'Please, enter old password!',
+                  }],
+                })(
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Old password" />
+                )}
+              </Form.Item>
 
 
 
-              <FormItem>
+              <Form.Item>
+                {getFieldDecorator('password', {
+                  rules: [{
+                    required: true, message: 'Please, enter new password!',
+                  }, {
+                    validator: this.validateToNextPassword,
+                  }],
+                })(
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="New password" />
+                )}
+              </Form.Item>
 
-              <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-                Register
-              </Button>
 
-              </FormItem>
+              <Form.Item>
+                {getFieldDecorator('confirm', {
+                  rules: [{
+                    required: true, message: 'Please, repeat new password!',
+                  }, {
+                    validator: this.compareToFirstPassword,
+                  }],
+                })(
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Repeat new password" />
+                )}
+              </Form.Item>
+
+
+              <Form.Item>
+                <Button type="primary" htmlType="submit" >
+                  Change password
+                </Button>
+              </Form.Item>
 
             </Form>
 
           </div>
         </div>
-      </div>*/} </div>
+      </div>
     );
   }
 }
 
 
-export default withTracker(() => {
-  return {
-    currentUser: Meteor.user(),
-  };
-})(ChangePassword);
+const WarpedChangePassword = Form.create({ name: 'normal_login' })(ChangePassword);
+
+export default WarpedChangePassword

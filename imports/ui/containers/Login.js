@@ -50,150 +50,70 @@ class NormalLoginForm extends React.Component {
     }
 
     return (
-      
-        <div>
 
-          <div className="elements">
-          <div>
-            <h1 className="uraccount">Account</h1>
-          </div>
+      <div style={{background:"white", height:1000}}>
 
-          <div>
+
+        <div style={{height:"15%"}}/>
+
+        <div className="uraccount">
+          <h1>Your Account</h1>
+        </div>
+
+
+
+        <div style={{margin:"0 20% 0 20%"}}>
+
 
           <div className="login">
-              <h1 className="label" >Login</h1>
-              {errorMessage}
-              {
-                this.props.loading ?
+            <h1>Login</h1>
+            <Form onSubmit={this.handleSubmit} className="login-form">
 
-                  <Spin indicator={antIcon} />
-                  :
-                  <Form onSubmit={this.handleSubmit} className="login-form">
+              <FormItem>
+                {getFieldDecorator('userName', {
+                  rules: [{ required: true, message: 'Please input your username!' }],
+                })(
+                  <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                )}
+              </FormItem>
 
-                    <FormItem>
-                      {getFieldDecorator('userName', {
-                        rules: [{ required: true, message: 'Please input your username!' }],
-                      })(
-                        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-                      )}
-                    </FormItem>
+              <FormItem>
+                {getFieldDecorator('password', {
+                  rules: [{ required: true, message: 'Please input your Password!' }],
+                })(
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                )}
+              </FormItem>
 
-                    <FormItem>
-                      {getFieldDecorator('password', {
-                        rules: [{ required: true, message: 'Please input your Password!' }],
-                      })(
-                        <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)', 'backgraound-color':'black' }} />} type="password" placeholder="Password" />
-                      )}
-                    </FormItem>
-
-                    <FormItem>
-                      <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-                        Login
-                      </Button>
-                    </FormItem>
-                  </Form>
-              }
-            </div>
-
-
-              <div className="login2">
-
-                <h1 className="label">Register</h1>
-
-               
-                  <p className="label">By creating an account, you will be able to move through the rent process faster,
-                  store multiple addresses, view and track your orders in your account and more.</p>
-                
-
-                <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleCrate.bind(this)}>
-                  Create account<Icon type="arrow-right" />
+              <FormItem>
+                <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
+                  Login
                 </Button>
+
                 <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleReset.bind(this)}>
-                Forgot Password<Icon type="arrow-right" />
+                  Forgot Password
                 </Button>
 
-              </div>
+              </FormItem>
+            </Form>
+          </div>
 
+          <div className="login2">
 
+            <h1>Register</h1>
 
+            <li>
+              By creating an account, you will be able to move through the rent process faster,
+              store multiple addresses, view and track your orders in your account and more.
+            </li>
+
+            <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleCrate.bind(this)}>
+              Create account<Icon type="arrow-right" />
+            </Button>
 
           </div>
 
-          </div>
-
-
-
-          <div>
-            <img src="https://images.wallpaperscraft.ru/image/gora_snoubord_vershina_tuman_pokorenie_11541_1920x1080.jpg" width="100%" height="100%"/>
-          </div>
-
-
-          
-{/*
-          <div style={{height:"15%"}}/>
-
-          <div >
-            <h1 className="uraccount">Your Account</h1>
-          </div>
-
-          <div style={{margin:"0 20% 0 20%"}}>
-
-
-            <div className="login">
-              <h1>Login</h1>
-              {errorMessage}
-              {
-                this.props.loading ?
-
-                  <Spin indicator={antIcon} />
-                  :
-                  <Form onSubmit={this.handleSubmit} className="login-form">
-
-                    <FormItem>
-                      {getFieldDecorator('userName', {
-                        rules: [{ required: true, message: 'Please input your username!' }],
-                      })(
-                        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-                      )}
-                    </FormItem>
-
-                    <FormItem>
-                      {getFieldDecorator('password', {
-                        rules: [{ required: true, message: 'Please input your Password!' }],
-                      })(
-                        <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-                      )}
-                    </FormItem>
-
-                    <FormItem>
-                      <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
-                        Login
-                      </Button>
-                    </FormItem>
-                  </Form>
-              }
-            </div>
-              
-
-            <div className="login2">
-
-              <h1>Register</h1>
-
-              <li>
-                By creating an account, you will be able to move through the rent process faster,
-                store multiple addresses, view and track your orders in your account and more.
-              </li>
-
-              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleCrate.bind(this)}>
-                Create account<Icon type="arrow-right" />
-              </Button>
-              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleReset.bind(this)}>
-               Forgot Password<Icon type="arrow-right" />
-              </Button>
-
-            </div>
-
-            </div>*/}
+        </div>
 
       </div>
     );

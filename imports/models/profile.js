@@ -40,11 +40,6 @@ const Profile = Class.create({                  // Main class of users
       optional: true,
     },
 
-    username: {
-      type: String,
-      optional: false,
-    },
-
     firstName: {
       type: String,
       optional: false,
