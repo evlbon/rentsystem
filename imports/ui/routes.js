@@ -18,6 +18,9 @@ import ViewItem from './containers/ItemDetailView';
 import MyItems from './containers/MyItems';
 import AllItems from "./containers/AllItems";
 import MySearch from "./containers/Search";
+import CategotyRequest from "./containers/CategoryRequest";
+import Requests from"./containers/Requests";
+import CategoryDeletionRequest from "./containers/CategoryDeletionRequest";
 
 
 const BaseRouter = () => (
@@ -29,9 +32,15 @@ const BaseRouter = () => (
         <Route exact path='/signup/' component={Signup} />
         <Route exact path='/userpage/' component={AccountPage} />
         <Route exact path='/setprofile/' component={WarpedProfileForm} />
-      <Route exact path='/enterEmail/' component={EnterEmail} />
+        <Route exact path='/enterEmail/' component={EnterEmail} />
       <Route exact path='/changePass/' component={WarpedChangePassword} />
         <Route exact path='/setitem/' component={WarpedItemForm} />
+        <Route exact path='/setcat/' component={CategotyRequest} />
+
+        <Route exact path='/requests/' component={Requests} />
+
+        <Route exact path='/delcat/' component={CategoryDeletionRequest} />
+
         <Route exact path='/edit_item/:id/' component={ModifyItem} />
         <Route exact path='/item/:id/' component={ViewItem} />
 

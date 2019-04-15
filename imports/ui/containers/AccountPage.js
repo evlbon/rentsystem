@@ -26,6 +26,9 @@ class UserPage extends React.Component {
     this.props.history.push('/setprofile/');
   }
 
+  showRequests(){
+  }
+
 
   render() {
 
@@ -61,11 +64,11 @@ class UserPage extends React.Component {
               <h1 style={{font:"normal 15px/0.5 Verdana Bold, Gadget, sans-serif"}}>ACCOUNT DETAILS</h1>
               First name<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.firstName}</h1>
               Last name<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.lastName}</h1>
-
               Username <br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{this.props.currentUser.username}</h1>
-
-              Phone<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.phone}</h1>
-
+              
+              {/*Phone<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.phone}</h1>*/}
+              
+              Type<br/> <h1 style={{font:"normal 25px/0.5 Verdana Bold, Gadget, sans-serif"}}>{profile.type}</h1>
 
               <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={this.handleChangePass.bind(this)}>
                 Change password
@@ -77,6 +80,34 @@ class UserPage extends React.Component {
               <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={()=>{this.props.history.push('/my_items/')}}>
                 My Items
               </Button><br/>
+
+              {this.props.profiles.findOne({userID: this.props.currentUser._id}).type === "renter-owner" ?
+              <div>
+              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={()=>{this.props.history.push('/setcat/')}} >
+                Add category
+              </Button><br/>
+              </div>
+                : ""
+              }
+
+              {this.props.profiles.findOne({userID: this.props.currentUser._id}).type === "renter-owner" ?
+              <div>
+              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={()=>{this.props.history.push('/delcat/')}} >
+                Delete category
+              </Button><br/>
+              </div>
+                : ""
+              }
+               {this.props.profiles.findOne({userID: this.props.currentUser._id}).type === "admin" ?
+              <div>
+              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}}  onClick={()=>{this.props.history.push('/requests/')}} >
+                Category requests
+              </Button><br/>
+              </div>
+                : ""
+              }
+          
+          
 
             </div>
           </div>
@@ -93,6 +124,7 @@ class UserPage extends React.Component {
 export default withTracker(() => {
   return {
     currentUser: Meteor.user(),
+    profiles: Profile,
   };
 })(UserPage);
 

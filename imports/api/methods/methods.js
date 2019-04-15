@@ -3,6 +3,7 @@ import { Accounts } from 'meteor/accounts-base'
 import Profile from "../../models/profile";
 import {updateObject} from "./utility";
 import Items from "../../models/item";
+import Category from "../../models/category";
 
 
 Meteor.methods({
@@ -14,11 +15,6 @@ Meteor.methods({
       });
     }
   },
-
-
-
-
-
 
 
   'addUser'(values,callback) {
@@ -108,4 +104,55 @@ Meteor.methods({
     item.save();
   },
 
+});
+
+Meteor.methods({
+
+
+  'create_category'(values) {
+
+    let category = new Category({
+      categoryName: values.name,
+      approved_add: false,
+      approved_del: false,
+      request_del_cat: false,
+      description: values.description
+    });
+
+    category.save();
+  },
+
+  'request_del_cat'(name) {
+
+    const cat = Category.findOne({categoryName: name});
+    console.log(cat);
+    cat.request_del_cat = true;
+
+    cat.save();
+  },
+
+  'approve_add_cat'(ID) {
+
+    const cat = Category.findOne({_id: ID});
+    console.log(cat);
+    
+    cat.approved_add = true;
+
+    // Accounts.sendEnrollmentEmail(user._id);
+    cat.save();
+  },
+
+  'approve_del_cat'(ID) {
+    Category.remove({_id: ID})
+  },
+
+  'deny_del_cat'(ID) {
+
+    const cat = Category.findOne({_id: ID});
+    cat.request_del_cat = false;
+
+    cat.save();
+    
+  },
+  
 });
