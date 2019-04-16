@@ -8,8 +8,6 @@ Meteor.methods({
 
     'addItem' ( values,OwnerID ) {
 
-        console.log(values.image);
-
         Items.insert({
             itemName: values.itemName,
             OwnerID,
@@ -18,7 +16,6 @@ Meteor.methods({
             category: values.category,
             keywords: values.keywords,
             description: values.description,
-            image: values.image,
         });
     },
 
