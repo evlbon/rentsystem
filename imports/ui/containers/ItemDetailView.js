@@ -53,6 +53,10 @@ class ViewItem extends React.Component {
               <strong>Key Words: </strong>
               {item.keywords}
             </p>
+            <p>
+                <strong>Category: </strong>
+                {item.category}
+            </p>
 
             {item.OwnerID === this.props.currentUser._id ?
               <div>
