@@ -38,6 +38,8 @@ class ItemForm extends React.Component {
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log(values);
+
+
             let image = undefined;
 
             if(this.state.image){

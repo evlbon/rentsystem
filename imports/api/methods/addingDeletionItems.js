@@ -16,6 +16,7 @@ Meteor.methods({
             category: values.category,
             keywords: values.keywords,
             description: values.description,
+            image: values.image,
         });
     },
 
