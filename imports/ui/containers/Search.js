@@ -4,10 +4,13 @@ import {withTracker} from 'meteor/react-meteor-data';
 import Items from '../../models/item';
 import {Meteor} from "meteor/meteor";
 import Profile from "../../models/profile";
-import {Input, Checkbox, Button, Popover} from 'antd';
+import {Input, Checkbox, Button, Popover, Dropdown, Menu, Icon} from 'antd';
 import ItemList from "../components/ItemListView";
+import Category from "../../models/category";
 
 const Search = Input.Search;
+const ANY_CAT = 'Any category';
+
 class MySearch extends React.Component {
 
   constructor(props) {
@@ -17,6 +20,7 @@ class MySearch extends React.Component {
       byName: true,
       byOwner: true,
       byKeyWords: true,
+      selectedCat: ANY_CAT,
     };
   }
 
@@ -49,9 +53,23 @@ class MySearch extends React.Component {
     return result
   };
 
+  getApprovedCat = () => {
+
+    const cat = Category.find({approved_add: true}, { sort: { approved_add: 1 }}).map(e => e.categoryName);
+    cat.splice(0, 0, 'Any category');
+    return cat;
+  };
+
+   handleMenuClick = (e) => {
+     this.setState({
+         selectedCat: this.getApprovedCat()[e.key]
+     })
+   };
 
 
-  search = (value) => {
+
+
+    search = (value) => {
     let result = [];
 
     if(this.state.byName)
@@ -72,6 +90,12 @@ class MySearch extends React.Component {
 
     });
 
+    if (this.state.selectedCat !== ANY_CAT) {
+        result = result.filter(item =>{
+            return item.category === this.state.selectedCat
+        });
+    }
+
 
     // result = result.concat(this.searchByOwner(value));
     // result = result.concat(this.searchByKey(value));
@@ -86,7 +110,15 @@ class MySearch extends React.Component {
 
 
   render() {
-    console.log(this.props.users);
+
+      const menu = (
+          <Menu onClick={(e) => this.handleMenuClick(e)}>
+              {this.getApprovedCat().map((e,i) => {
+                  return <Menu.Item key={i}>{e}</Menu.Item>
+              })}
+          </Menu>
+      );
+
       return (
         <div style={{background: "white", padding: "100px 100px 20px 100px", minHeight: 1000}}>
 
@@ -111,6 +143,12 @@ class MySearch extends React.Component {
               <Checkbox defaultChecked onChange={e=>{this.setState({byName:e.target.checked})}}>By name</Checkbox><br/>
               <Checkbox defaultChecked onChange={e=>{this.setState({byOwner:e.target.checked})}}>By owner</Checkbox><br/>
               <Checkbox defaultChecked onChange={e=>{this.setState({byKeyWords:e.target.checked})}}>By key words</Checkbox>
+              <br/>
+              <Dropdown overlay={menu}>
+                  <Button style={{ marginTop: 8 }}>
+                      {this.state.selectedCat} <Icon type="down" />
+                  </Button>
+              </Dropdown>
             </div>} trigger="click">
               <Button type='primary' style={{height:40, width:'100%'}}>By</Button>
             </Popover>

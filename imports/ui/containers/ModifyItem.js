@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Icon, Button, InputNumber } from 'antd';
 import { Meteor } from 'meteor/meteor';
+import Items from '../../models/item';
 
 const FormItem = Form.Item;
 
@@ -26,6 +27,7 @@ class ModifyItem extends React.Component {
 
 
   render() {
+    const item = Items.findOne({_id: this.props.match.params.id})
     console.log(this.props.match.params.id)
 
     const { getFieldDecorator } = this.props.form;
@@ -51,7 +53,7 @@ class ModifyItem extends React.Component {
                 {getFieldDecorator('itemName', {
                   rules: [],
                 })(
-                  <Input placeholder="Item Name" />
+                  <Input placeholder={item ? item.itemName : 'itemName'} />
                 )}
               </FormItem>
 
@@ -60,12 +62,12 @@ class ModifyItem extends React.Component {
                 {getFieldDecorator('price', {
                   rules: [],
                 })(
-                  <InputNumber placeholder="Price" />)}
+                  <InputNumber placeholder={item ? item.price : "Price"} />)}
 
                 {getFieldDecorator('deposit', {
                   rules: [],
                 })(
-                  <InputNumber placeholder="Deposit" />)}
+                  <InputNumber placeholder={item ? item.deposit : "Deposit"} />)}
 
               </FormItem>
 
@@ -75,7 +77,7 @@ class ModifyItem extends React.Component {
                 {getFieldDecorator('keywords', {
                   rules: [],
                 })(
-                  <Input placeholder="Keywords" />)}
+                  <Input placeholder={item ? item.keywords : "Keywords"} />)}
               </FormItem>
 
 
@@ -83,14 +85,14 @@ class ModifyItem extends React.Component {
                 {getFieldDecorator('description', {
                   rules: [],
                 })(
-                  <Input placeholder="Description" />)}
+                  <Input placeholder={item ? item.description : "Description"} />)}
               </FormItem>
 
               <FormItem label="Category">
                 {getFieldDecorator('category', {
                   rules: [],
                 })(
-                  <Input placeholder="Category" />)}
+                  <Input placeholder={item ? item.category : "Category"} />)}
               </FormItem>
 
 
