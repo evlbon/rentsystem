@@ -27,18 +27,18 @@ import CategoryDeletionRequest from "./containers/CategoryDeletionRequest";
 
 const BaseRouter = () => (
     <div>
-        <Route exact path='/' component={MainPage} />
-        {/*<Route exact path='/articles/:articleID/' component={ArticleDetail} />*/}
-        {/*{<Route exact path='/items' component={ItemList} />}*/}
-        <Route exact path='/login/' component={Login} />
-        <Route exact path='/signup/' component={Signup} />
-        <Route exact path='/userpage/' component={AccountPage} />
-        <Route exact path='/setprofile/' component={WarpedProfileForm} />
+      <Route exact path='/' component={MainPage} />
+      {/*<Route exact path='/articles/:articleID/' component={ArticleDetail} />*/}
+      {/*{<Route exact path='/items' component={ItemList} />}*/}
+      <Route exact path='/login/' component={Login} />
+      <Route exact path='/signup/' component={Signup} />
+      <Route exact path='/userpage/' component={AccountPage} />
+      <Route exact path='/setprofile/' component={WarpedProfileForm} />
       <Route exact path='/enterEmail/' component={EnterEmail} />
       <Route exact path='/changePass/' component={WarpedChangePassword} />
-        <Route exact path='/setitem/' component={WarpedItemForm} />
-        <Route exact path='/edit_item/:id/' component={ModifyItem} />
-        <Route exact path='/item/:id/' component={ViewItem} />
+      <Route exact path='/setitem/' component={WarpedItemForm} />
+      <Route exact path='/edit_item/:id/' component={ModifyItem} />
+      <Route exact path='/item/:id/' component={ViewItem} />
 
 
       <Route exact path='/all_items/' component={AllItems} />
