@@ -17,11 +17,6 @@ Meteor.methods({
   },
 
 
-
-
-
-
-
   'addUser'(values,callback) {
 
     Accounts.createUser({
@@ -113,7 +108,6 @@ Meteor.methods({
 
 Meteor.methods({
 
-
   'create_category'(values) {
 
     let category = new Category({
@@ -127,15 +121,6 @@ Meteor.methods({
     category.save();
   },
 
-  'request_del_cat'(name) {
-
-    const cat = Category.findOne({categoryName: name});
-    console.log(cat);
-    cat.request_del_cat = true;
-
-    cat.save();
-  },
-
   'approve_add_cat'(ID) {
 
     const cat = Category.findOne({_id: ID});
@@ -147,16 +132,30 @@ Meteor.methods({
     cat.save();
   },
 
-  'approve_del_cat'(ID) {
-    Category.remove({_id: ID})
+
+  'request_del_cat'(name) {
+
+    const cat = Category.findOne({categoryName: name});
+    console.log(cat);
+
+    cat.request_del_cat = true;
+
+    // Accounts.sendEnrollmentEmail(user._id);
+    cat.save();
   },
+
+
+  'approve_del_cat'(ID) {
+
+    Category.remove({_id: ID})
+
+  },
+
 
   'deny_del_cat'(ID) {
 
     const cat = Category.findOne({_id: ID});
     cat.request_del_cat = false;
-
-    cat.save();
 
   },
 

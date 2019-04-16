@@ -30,7 +30,7 @@ class ChangePassword extends Component {
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
-      callback('Пароли не совпадают!');
+      callback('Password do not match!');
     } else {
       callback();
     }
@@ -72,10 +72,10 @@ class ChangePassword extends Component {
               <Form.Item>
                 {getFieldDecorator('oldPassword', {
                   rules: [{
-                    required: true, message: 'Пожалуйста, введите старый пароль!',
+                    required: true, message: 'Please, enter old password!',
                   }],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Старый пароль" />
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Old password" />
                 )}
               </Form.Item>
 
@@ -84,12 +84,12 @@ class ChangePassword extends Component {
               <Form.Item>
                 {getFieldDecorator('password', {
                   rules: [{
-                    required: true, message: 'Пожалуйста, введите новый пароль!',
+                    required: true, message: 'Please, enter new password!',
                   }, {
                     validator: this.validateToNextPassword,
                   }],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Новый пароль" />
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="New password" />
                 )}
               </Form.Item>
 
@@ -97,19 +97,19 @@ class ChangePassword extends Component {
               <Form.Item>
                 {getFieldDecorator('confirm', {
                   rules: [{
-                    required: true, message: 'Пожалуйста, повторите новый пароль!',
+                    required: true, message: 'Please, repeat new password!',
                   }, {
                     validator: this.compareToFirstPassword,
                   }],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Повторите новый пароль" />
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Repeat new password" />
                 )}
               </Form.Item>
 
 
               <Form.Item>
                 <Button type="primary" htmlType="submit" >
-                  Изменить пароль
+                  Change password
                 </Button>
               </Form.Item>
 
