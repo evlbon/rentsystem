@@ -1,16 +1,30 @@
 import React from 'react';
-import { Form, Input, Icon, Button } from 'antd';
+import {Form, Input, Icon, Button, Dropdown, Menu} from 'antd';
 import { withTracker } from 'meteor/react-meteor-data';
 import Items from "../../models/item";
 import UploadImage from "../components/UploadImage";
 import Images from "../../models/image";
+import Category from "../../models/category";
 const FormItem = Form.Item;
 
 class ItemForm extends React.Component {
+    getApprovedCat = () => {
+
+      const cat = Category.find({approved_add: true}, { sort: { approved_add: 1 }}).map(e => e.categoryName);
+      cat.splice(0, 0, 'Any');
+      return cat;
+    };
+    handleMenuClick = (e) => {
+      this.setState({
+        selectedCat: this.getApprovedCat()[e.key]
+      })
+    };
+
     constructor() {
       super();
       this.state = {
-        image: undefined
+        image: undefined,
+        selectedCat: 'Any',
       }
     }
 
@@ -20,7 +34,7 @@ class ItemForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-     
+
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log(values);
@@ -33,7 +47,7 @@ class ItemForm extends React.Component {
                 fileName: image,
               });
             }
-            Meteor.call('addItem',{...values, image},this.props.currentUser._id,(err)=>{
+            Meteor.call('addItem',{...values, image, category: this.state.selectedCat},this.props.currentUser._id,(err)=>{
               if(err)
                 alert(err);
               else{
@@ -45,8 +59,15 @@ class ItemForm extends React.Component {
         });
       }
 
+    render() {
 
-      render() {
+      const menu = (
+        <Menu onClick={(e) => this.handleMenuClick(e)}>
+          {this.getApprovedCat().map((e,i) => {
+            return <Menu.Item key={i}>{e}</Menu.Item>
+          })}
+        </Menu>
+      );
 
         const { getFieldDecorator } = this.props.form;
         return (
@@ -115,10 +136,11 @@ class ItemForm extends React.Component {
                   </FormItem>
 
                   <FormItem label="Category">
-                    {getFieldDecorator('category', {
-                      rules: [],
-                    })(
-                      <Input placeholder="Category" />)}
+                    <Dropdown overlay={menu}>
+                      <Button style={{ marginTop: 8 }}>
+                        {this.state.selectedCat} <Icon type="down" />
+                      </Button>
+                    </Dropdown>
                   </FormItem>
 
 

@@ -144,11 +144,13 @@ class MySearch extends React.Component {
               <Checkbox defaultChecked onChange={e=>{this.setState({byOwner:e.target.checked})}}>By owner</Checkbox><br/>
               <Checkbox defaultChecked onChange={e=>{this.setState({byKeyWords:e.target.checked})}}>By key words</Checkbox>
               <br/>
+
               <Dropdown overlay={menu}>
                   <Button style={{ marginTop: 8 }}>
                       {this.state.selectedCat} <Icon type="down" />
                   </Button>
               </Dropdown>
+
             </div>} trigger="click">
               <Button type='primary' style={{height:40, width:'100%'}}>By</Button>
             </Popover>

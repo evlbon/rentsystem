@@ -7,13 +7,14 @@ import Category from "../../models/category";
 
 
 Meteor.methods({
-  'addAdmin'() {
-    if(!Meteor.users.find({}).fetch()[0]) {
-      Accounts.createUser({
-        username: "admin",
-        password: "admin"
-      });
-    }
+  'addAdmin'(username) {
+    const user = Meteor.users.findOne({username : username});
+
+    let profile = Profile.findOne({userID: user._id});
+
+    profile.type = 'admin';
+
+    profile.save();
   },
 
 
