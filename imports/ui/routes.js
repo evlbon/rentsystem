@@ -20,6 +20,9 @@ import AllItems from "./containers/AllItems";
 import MySearch from "./containers/Search";
 import Avatar from "./components/UploadImage";
 import Test from "./containers/Test";
+import CategoryRequest from "./containers/CategoryRequest";
+import Requests from "./containers/Requests";
+import CategoryDeletionRequest from "./containers/CategoryDeletionRequest";
 
 
 const BaseRouter = () => (
@@ -48,6 +51,12 @@ const BaseRouter = () => (
       <Route exact path='/search/' component={MySearch} />
 
       <Route exact path='/test/' component={Test} />
+
+      <Route exact path='/setcat/' component={CategoryRequest} />
+
+      <Route exact path='/requests/' component={Requests} />
+
+      <Route exact path='/delcat/' component={CategoryDeletionRequest} />
 
 
 
