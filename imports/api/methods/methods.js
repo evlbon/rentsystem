@@ -109,14 +109,15 @@ Meteor.methods({
 
 Meteor.methods({
 
-  'create_category'(values) {
+  'create_category'(values,OwnerID) {
 
     let category = new Category({
       categoryName: values.name,
       approved_add: false,
       approved_del: false,
       request_del_cat: false,
-      description: values.description
+      description: values.description,
+      OwnerID,
     });
 
     category.save();
@@ -157,6 +158,7 @@ Meteor.methods({
 
     const cat = Category.findOne({_id: ID});
     cat.request_del_cat = false;
+    cat.save()
 
   },
 

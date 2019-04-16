@@ -83,17 +83,8 @@ class UserPage extends React.Component {
 
               {this.props.profiles.findOne({userID: this.props.currentUser._id}).type === "renter-owner" ?
               <div>
-              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={()=>{this.props.history.push('/setcat/')}} >
-                Add category
-              </Button><br/>
-              </div>
-                : ""
-              }
-
-              {this.props.profiles.findOne({userID: this.props.currentUser._id}).type === "renter-owner" ?
-              <div>
-              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={()=>{this.props.history.push('/delcat/')}} >
-                Delete category
+              <Button type="primary" htmlType="submit" style={{marginTop: '10px'}} onClick={()=>{this.props.history.push('/my_categories/')}} >
+                My categories
               </Button><br/>
               </div>
                 : ""

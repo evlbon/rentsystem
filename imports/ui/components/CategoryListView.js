@@ -14,14 +14,8 @@ class CategoryList extends React.Component {
       return (
             <List
               itemLayout="vertical"
-              size="large"
-              grid={{
-                gutter: 32, xs: 1, sm: 2, md: 8, lg: 4, xl: 4, xxl: 3,
-              }}
+              bordered
               pagination={{
-                onChange: (page) => {
-                  console.log(page);
-                },
                 pageSize: 8,
               }}
               dataSource={this.props.categories}

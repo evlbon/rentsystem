@@ -12,6 +12,12 @@ const Category = Class.create({
 
         },
 
+          OwnerID: {
+            type: String,
+            optional: true,
+
+          },
+
         approved_add: {
             type: Boolean,
             optional: true,

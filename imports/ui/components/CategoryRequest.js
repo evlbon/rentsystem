@@ -4,14 +4,14 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Category from "../../models/category";
 const FormItem = Form.Item;
 
-class ItemForm extends React.Component {
+class CategoryForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log(values);
-            Meteor.call('create_category', values, (err)=>{
+            Meteor.call('create_category', values, this.props.currentUser._id, (err)=>{
               if(err)
                 alert(err);
               else{
@@ -28,24 +28,9 @@ class ItemForm extends React.Component {
 
         const { getFieldDecorator } = this.props.form;
         return (
-          <div style={{background:"white", minHeight:1000, paddingBottom: 50}}>
+                <Form onSubmit={(event) => this.handleSubmit(event)} layout='inline'>
 
-
-            <div style={{height:100}}/>
-
-            <div className="uraccount">
-              <h1>Add new Category</h1>
-            </div>
-
-
-
-            <div style={{margin:"0 20% 100px 20%"}}>
-
-
-              <div className="register">
-                <Form onSubmit={(event) => this.handleSubmit(event)} className="login-form">
-
-                  <FormItem label="Category Name">
+                  <FormItem label="Add new category">
                     {getFieldDecorator('name', {
                       rules: [],
                     })(
@@ -53,7 +38,7 @@ class ItemForm extends React.Component {
                     )}
                   </FormItem>
 
-                  <FormItem label="Description">
+                  <FormItem>
                     {getFieldDecorator('description', {
                       rules: [],
                     })(
@@ -70,18 +55,14 @@ class ItemForm extends React.Component {
                   </FormItem>
 
                 </Form>
-
-              </div>
-            </div>
-          </div>
 );
   }
 }
-const WarpedItemForm = Form.create({ name: 'normal_item' })(ItemForm);
+const CategoryRequest = Form.create({ name: 'normal_item' })(CategoryForm);
 
 
 export default withTracker(() => {
   return {
     currentUser: Meteor.user(),
   };
-})(WarpedItemForm);
+})(CategoryRequest);

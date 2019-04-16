@@ -20,9 +20,10 @@ import AllItems from "./containers/AllItems";
 import MySearch from "./containers/Search";
 import Avatar from "./components/UploadImage";
 import Test from "./containers/Test";
-import CategoryRequest from "./containers/CategoryRequest";
+import CategoryRequest from "./components/CategoryRequest";
 import Requests from "./containers/Requests";
 import CategoryDeletionRequest from "./containers/CategoryDeletionRequest";
+import MyCategories from "./containers/MyCategories";
 
 
 const BaseRouter = () => (
@@ -57,6 +58,8 @@ const BaseRouter = () => (
       <Route exact path='/requests/' component={Requests} />
 
       <Route exact path='/delcat/' component={CategoryDeletionRequest} />
+
+      <Route exact path='/my_categories/' component={MyCategories} />
 
 
 

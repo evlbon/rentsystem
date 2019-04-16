@@ -22,8 +22,6 @@ class Category extends Component {
 }
   denyDeleteCategory() {
     Meteor.call('deny_del_cat', this.props.category._id);
-    //this.props.history.push(`/viewitem/${this.props.item._id}/`);
-    //this.setState({ item_Id: this.props.item._id });
   }
 
 
@@ -33,63 +31,27 @@ class Category extends Component {
     if (this.props.currentUser) {
       return (
 
-        <Card
-          hoverable
-          //onClick={()=>{this.props.history.push(`/item/${this.props.item._id}/`);}}
-          style={{width: 300}}
-          bordered={false}
-        >
-          <Meta
-            title={this.props.category.categoryName}
-          />
+        <div style={{height:40}}>
+          {this.props.category.categoryName}
+          <div style={{float:'right'}}>
             {this.props.category.request_del_cat === true ?
-            <Button onClick={this.deleteCategory.bind(this)}>Delete</Button>
-            : ""
+              <Button onClick={this.deleteCategory.bind(this)}>Delete</Button>
+              : ""
             }
             {this.props.category.request_del_cat === true ?
-            <Button onClick={this.denyDeleteCategory.bind(this)}>Deny deletion</Button>
-            : ""
+              <Button onClick={this.denyDeleteCategory.bind(this)}>Deny deletion</Button>
+              : ""
             }
             {this.props.category.approved_add === false ?
-            <Button onClick={this.addCategory.bind(this)}>Add</Button>
-            : ""
+              <Button onClick={this.addCategory.bind(this)}>Add</Button>
+              : ""
             }
             {this.props.category.approved_add === false ?
-            <Button onClick={this.denyAddCategory.bind(this)}>Deny addition</Button>
-            : ""
+              <Button onClick={this.denyAddCategory.bind(this)}>Deny addition</Button>
+              : ""
             }
-          {/*<p>*/}
-            {/*<strong>Owner: </strong>*/}
-            {/*{this.props.item.usernameOwner}*/}
-          {/*</p>*/}
-          {/*<p>*/}
-            {/*<strong>Price: </strong>*/}
-            {/*{this.props.item.price}*/}
-          {/*</p>*/}
-          {/*<p>*/}
-            {/*<strong>Deposit: </strong>*/}
-            {/*{this.props.item.deposit}*/}
-          {/*</p>*/}
-          {/*<p>*/}
-            {/*<strong>Description: </strong>*/}
-            {/*{this.props.item.description}*/}
-          {/*</p>*/}
-
-          {/*<button style={{marginTop: '10px'}} onClick={this.handleViewItem.bind(this)}>*/}
-            {/*VIEW*/}
-          {/*</button>*/}
-          {/*<br/>*/}
-
-          {/*<button style={{marginTop: '10px'}} onClick={this.deleteThisItem.bind(this)}>*/}
-            {/*DELETE*/}
-          {/*</button>*/}
-          {/*<br/>*/}
-          {/*<button style={{marginTop: '10px'}} onClick={this.handleModifyItem.bind(this)}>*/}
-            {/*MODIFY*/}
-          {/*</button>*/}
-          {/*<br/>*/}
-
-        </Card>
+          </div>
+        </div>
 
 
       );
