@@ -14,7 +14,7 @@ Meteor.methods({
             price: parseInt(values.price),
             deposit: parseInt(values.deposit),
             category: values.category,
-            keywords: values.keywords,
+            keywords: values.keywords ? values.keywords : "",
             description: values.description,
             image: values.image,
         });

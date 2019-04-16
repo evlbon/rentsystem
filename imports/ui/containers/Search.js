@@ -72,23 +72,31 @@ class MySearch extends React.Component {
     search = (value) => {
     let result = [];
 
-    if(this.state.byName)
-    result = result.concat(this.searchByName(value));
+    if (value) {
+        if (this.state.byName)
+            result = result.concat(this.searchByName(value));
 
-    if(this.state.byOwner)
-    this.searchByOwner(value).forEach(item =>{
+        if (this.state.byOwner)
+            this.searchByOwner(value).forEach(item => {
 
-      if (result.findIndex(r=>{return item._id === r._id}) === -1)
-        result.push(item)
+                if (result.findIndex(r => {
+                        return item._id === r._id
+                    }) === -1)
+                    result.push(item)
 
-    });
+            });
 
-    if(this.state.byKeyWords)
-    this.searchByKey(value).forEach(item =>{
-      if (result.findIndex(r=>{return item._id === r._id}) === -1)
-        result.push(item)
+        if (this.state.byKeyWords)
+            this.searchByKey(value).forEach(item => {
+                if (result.findIndex(r => {
+                        return item._id === r._id
+                    }) === -1)
+                    result.push(item)
 
-    });
+            });
+    } else {
+        result = Items.find({}).fetch()
+    }
 
     if (this.state.selectedCat !== ANY_CAT) {
         result = result.filter(item =>{
