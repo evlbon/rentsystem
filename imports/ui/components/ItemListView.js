@@ -22,7 +22,7 @@ class ItemList extends React.Component {
                 onChange: (page) => {
                   console.log(page);
                 },
-                pageSize: 8,
+                pageSize: 16,
               }}
               dataSource={this.props.items}
               renderItem={item => (

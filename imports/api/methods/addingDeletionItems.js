@@ -8,9 +8,9 @@ Meteor.methods({
 
     'addItem' ( values,OwnerID ) {
 
-        console.log(OwnerID);
+        console.log(values.image);
 
-        let item = Items.insert({
+        Items.insert({
             itemName: values.itemName,
             OwnerID,
             price: parseInt(values.price),
@@ -18,6 +18,7 @@ Meteor.methods({
             category: values.category,
             keywords: values.keywords,
             description: values.description,
+            image: values.image,
         });
     },
 

@@ -2,9 +2,21 @@ import React from 'react';
 import { Form, Input, Icon, Button } from 'antd';
 import { withTracker } from 'meteor/react-meteor-data';
 import Items from "../../models/item";
+import UploadImage from "../components/UploadImage";
+import Images from "../../models/image";
 const FormItem = Form.Item;
 
 class ItemForm extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        image: undefined
+      }
+    }
+
+    handleImage(image) {
+      this.setState({image});
+    }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -12,13 +24,22 @@ class ItemForm extends React.Component {
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log(values);
-            Meteor.call('addItem',values,this.props.currentUser._id,(err)=>{
+            let image = undefined;
+
+            if(this.state.image){
+              image = this.props.currentUser._id + Math.floor(Math.random()*100000).toString() + '.' + this.state.image.type.split('/')[1];
+              Images.insert({
+                ...this.state.image,
+                fileName: image,
+              });
+            }
+            Meteor.call('addItem',{...values, image},this.props.currentUser._id,(err)=>{
               if(err)
                 alert(err);
               else{
                 this.props.history.push('/all_items/');
               }
-    
+
             });
           }
         });
@@ -45,6 +66,13 @@ class ItemForm extends React.Component {
 
               <div className="register">
                 <Form onSubmit={(event) => this.handleSubmit(event)} className="login-form">
+                  <FormItem label="Image">
+                    {getFieldDecorator('img', {
+                      rules: [],
+                    })(
+                      <UploadImage handleImage={this.handleImage.bind(this)}/>
+                    )}
+                  </FormItem>
 
                   <FormItem label="Item Name">
                     {getFieldDecorator('itemName', {

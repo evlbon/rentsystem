@@ -5,6 +5,7 @@ import Items from '../../models/item';
 import {Button} from "antd";
 import {Meteor} from "meteor/meteor";
 import Profile from "../../models/profile";
+import Images from "../../models/image";
 
 class ViewItem extends React.Component {
 
@@ -17,11 +18,23 @@ class ViewItem extends React.Component {
     if (item) {
       const owner = this.props.profiles.findOne({userID: item.OwnerID});
 
+      const img = Images.findOne({ name : item.image});
+
       return (
         <div style={{background: "white", padding: "200px 50px 20px 200px", minHeight: 1000}}>
 
-          <img style={{width: '45%'}} alt="example"
-               src="https://cenomaniya.ru/image/cache/data/skateboard/ckrider-900x900.jpg"/>
+          {img?
+            <img style={{width: '45%'}} alt="Image"
+                 src={'/'+img._id+img.extensionWithDot}
+            />:
+            <img style={{width: '45%'}} alt="example"
+                 src="https://cenomaniya.ru/image/cache/data/skateboard/ckrider-900x900.jpg"
+            />
+          }
+
+
+
+
 
           <div style={{
             float: 'right',

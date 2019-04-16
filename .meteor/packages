@@ -24,3 +24,6 @@ accounts-ui
 accounts-password
 react-meteor-data
 jagi:astronomy
+ostrio:files
+cfs:gridfs
+cfs:standard-packages

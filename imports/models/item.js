@@ -58,6 +58,11 @@ const Items = Class.create({
             optional: true,
 
         },
+        image: {
+            type: String,
+            optional: true,
+
+        },
     }
 });
 

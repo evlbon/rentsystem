@@ -84,5 +84,4 @@ class EdidProfileForm extends React.Component {
   }
 }
 
-
 export default EdidProfileForm;

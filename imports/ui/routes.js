@@ -18,6 +18,8 @@ import ViewItem from './containers/ItemDetailView';
 import MyItems from './containers/MyItems';
 import AllItems from "./containers/AllItems";
 import MySearch from "./containers/Search";
+import Avatar from "./components/UploadImage";
+import Test from "./containers/Test";
 
 
 const BaseRouter = () => (
@@ -44,6 +46,8 @@ const BaseRouter = () => (
       <Route exact path='/myitems/' component={MyItems} />
 
       <Route exact path='/search/' component={MySearch} />
+
+      <Route exact path='/test/' component={Test} />
 
 
 

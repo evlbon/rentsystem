@@ -74,38 +74,3 @@ Meteor.methods({
   },
 });
 
-
-
-Meteor.methods({
-
-  'items.remove'(itemID) {
-    Items.remove({_id: itemID})
-  },
-
-  'items.edit'(values) {
-    const item = Items.findOne({_id: values.id});
-    console.log(item);
-
-    if (values.itemID)
-      item.itemID = values.itemID;
-    if (values.itemName)
-      item.itemName = values.itemName;
-    if (values.ownerID)
-      item.ownerID = values.ownerID;
-    if (values.renterID)
-      item.renterID = values.renterID;
-    if (values.price)
-      item.price = values.price;
-    if (values.deposit)
-      item.deposit = values.deposit;
-    if (values.keywords)
-      item.keywords = values.keywords;
-    if (values.category)
-      item.category = values.category;
-    if (values.description)
-      item.description = values.description;
-
-    item.save();
-  },
-
-});

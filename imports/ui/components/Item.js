@@ -3,6 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {withRouter} from "react-router-dom";
 import {Card} from 'antd';
 import {withTracker} from 'meteor/react-meteor-data';
+import Images from "../../models/image";
 
 const {Meta} = Card;
 
@@ -27,6 +28,10 @@ class Item extends Component {
   render() {
 
     if (this.props.currentUser) {
+      const img = Images.findOne({ name : this.props.item.image});
+      let path = "https://cenomaniya.ru/image/cache/data/skateboard/ckrider-900x900.jpg";
+      if (img)
+        path = '/'+img._id+img.extensionWithDot;
       return (
 
         <Card
@@ -34,7 +39,7 @@ class Item extends Component {
           onClick={()=>{this.props.history.push(`/item/${this.props.item._id}/`);}}
           style={{width: 300}}
           bordered={false}
-          cover={<img alt="example" src="https://cenomaniya.ru/image/cache/data/skateboard/ckrider-900x900.jpg"/>}
+          cover={<img alt="example" src={path}/>}
         >
           <Meta
             title={this.props.item.itemName}
