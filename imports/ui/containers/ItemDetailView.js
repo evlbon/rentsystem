@@ -28,7 +28,7 @@ class ViewItem extends React.Component {
                  src={'/'+img._id+img.extensionWithDot}
             />:
             <img style={{width: '45%'}} alt="example"
-                 src="https://cenomaniya.ru/image/cache/data/skateboard/ckrider-900x900.jpg"
+                 src="https://lightwidget.com/widgets/empty-photo.jpg"
             />
           }
 

@@ -29,7 +29,7 @@ class Item extends Component {
 
     if (this.props.currentUser) {
       const img = Images.findOne({ name : this.props.item.image});
-      let path = "https://cenomaniya.ru/image/cache/data/skateboard/ckrider-900x900.jpg";
+      let path = "https://lightwidget.com/widgets/empty-photo.jpg";
       if (img)
         path = '/'+img._id+img.extensionWithDot;
       return (
