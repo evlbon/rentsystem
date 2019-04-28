@@ -14,7 +14,6 @@ const ANY_CAT = 'Any category';
 class MySearch extends React.Component {
 
     levenshteinDistance = (s, t) => {
-        console.log(s, t)
         let d = [];
         let n = s.length;
         let m = t.length;
@@ -60,7 +59,6 @@ class MySearch extends React.Component {
             let result = Items.find({}).fetch();
 
             return result.filter(x => {
-                console.log(this.levenshteinDistance(x.itemName, itemName));
                 return (this.levenshteinDistance(x.itemName, itemName) <= 2)
             })
         }
@@ -70,7 +68,8 @@ class MySearch extends React.Component {
     searchByOwner = (username, exact) => {
         let user = null;
         if (exact) {
-            user = [this.props.users.findOne({username})];
+            user = this.props.users.findOne({username});
+            user = user ? [user] : []
         } else {
             user = this.props.users.find({}).fetch();
             user = user.filter(x => this.levenshteinDistance(x.username, username) <= 2)
@@ -99,7 +98,6 @@ class MySearch extends React.Component {
                 keys = keys.split(',');
                 for (let i=0; i<keys.length; i++) {
                     keys[i] = keys[i].replace(/\s/g, '');
-                    console.log('q  '+keys[i]);
                     if (!exact && this.levenshteinDistance(key, keys[i]) <= 2) {
                         result.push(item);
                         break;
