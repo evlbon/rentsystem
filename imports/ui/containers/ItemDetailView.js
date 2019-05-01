@@ -40,35 +40,28 @@ class ViewItem extends React.Component {
             float: 'right',
             width: '55%',
             padding: '5% 20px 20px 10%',
-            font: "normal 20px/1.5 Verdana, Gadget, sans-serif",
+            font: "normal 15px/1.5 Avenir",
             color: 'black'
           }}>
             <h1 style={{font: "normal 50px/0.5 Verdana, Gadget, sans-serif"}}>{item.itemName}</h1>
+            <p style={{color:'gray',font: "normal 15px/0.5 Avenir",}}>
+              {item.price}₽/{item.deposit}₽
+            </p>
+            
+            
+            <Button type={'primary'} style={{width:'30%', height:40, margin:'10px 0 10px 0',font: "normal 18px/1.5 Avenir"}}>Rent</Button>
 
             <p>
-              <strong>Owner: </strong>
-              {`${owner.firstName} ${owner.lastName} (${this.props.users.findOne({_id:owner.userID}).username})` }
-            </p>
-
-            <p>
-              <strong>Price: </strong>
-              {item.price}
-            </p>
-            <p>
-              <strong>Deposit: </strong>
-              {item.deposit}
-            </p>
-            <p>
-              <strong>Description: </strong>
+              Description<br/>
               {item.description}
-            </p>
-            <p>
-              <strong>Key Words: </strong>
-              {item.keywords}
-            </p>
-            <p>
-                <strong>Category: </strong>
-                {item.category}
+            <br/>
+              Owner:
+              {` ${owner.firstName} ${owner.lastName} (${this.props.users.findOne({_id:owner.userID}).username})` }
+              <br/>Key Words:
+
+              {' '+item.keywords}
+                <br/>Category:
+                {' '+item.category}
             </p>
 
             {item.OwnerID === this.props.currentUser._id ?
@@ -78,9 +71,7 @@ class ViewItem extends React.Component {
                 }}>
                   DELETE
                 </Button>
-
-
-                <br/>
+                {' '}
                 <Button type='primary' style={{marginTop: '10px'}} onClick={() => {
                   this.props.history.push(`/edit_item/${this.props.match.params.id}/`)
                 }}>
