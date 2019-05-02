@@ -19,6 +19,8 @@ class CustomLayout extends React.Component {
 
       const profile = this.props.currentUser ? this.props.profiles.findOne({userID: this.props.currentUser._id}): undefined;
 
+      console.log(this.props.profiles.find().fetch())
+
       return (
         <Layout>
 
@@ -58,7 +60,7 @@ class CustomLayout extends React.Component {
             >
               <Menu.Item key="4"><Link to="/">Main Page</Link></Menu.Item>
               <Menu.Item key="1"><Link to="/all_items/">Items</Link></Menu.Item>
-              {localStorage.getItem('user')? <Menu.Item key="2"><Link to="/allusers/">Users</Link></Menu.Item>:""}
+              <Menu.Item key="2"><Link to="/allusers/">Users</Link></Menu.Item>
 
             </Menu>
           </Header>

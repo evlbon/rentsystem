@@ -1,3 +1,5 @@
-import './addingDeletionItems'
-import './methods'
-import './imageMethods'
+import './items'
+import './users'
+import './images'
+import './categories'
+import './orders'

@@ -10,6 +10,7 @@ import Images from "../../models/image";
 class ViewItem extends React.Component {
 
 
+
   render() {
     console.log("asd");
 
@@ -32,10 +33,6 @@ class ViewItem extends React.Component {
             />
           }
 
-
-
-
-
           <div style={{
             float: 'right',
             width: '55%',
@@ -47,22 +44,8 @@ class ViewItem extends React.Component {
             <p style={{color:'gray',font: "normal 15px/0.5 Avenir",}}>
               {item.price}₽/{item.deposit}₽
             </p>
-            
-            
-            <Button type={'primary'} style={{width:'30%', height:40, margin:'10px 0 10px 0',font: "normal 18px/1.5 Avenir"}}>Rent</Button>
 
-            <p>
-              Description<br/>
-              {item.description}
-            <br/>
-              Owner:
-              {` ${owner.firstName} ${owner.lastName} (${this.props.users.findOne({_id:owner.userID}).username})` }
-              <br/>Key Words:
 
-              {' '+item.keywords}
-                <br/>Category:
-                {' '+item.category}
-            </p>
 
             {item.OwnerID === this.props.currentUser._id ?
               <div>
@@ -78,24 +61,34 @@ class ViewItem extends React.Component {
                   MODIFY
                 </Button>
 
-
-
                 <br/>
 
+              </div> :
+              <Button type={'primary'}
+                      style={{width:'30%', height:40, margin:'10px 0 10px 0',font: "normal 18px/1.5 Avenir"}}
+                      onClick={()=>{Meteor.call('newOrder', owner.userID, this.props.currentUser._id, item._id)}}
 
-              </div> : ''
-
+              >Rent</Button>
 
             }
 
+            <p>
+              Description<br/>
+              {item.description}
+            <br/>
+              Owner:
+              {` ${owner.firstName} ${owner.lastName} (${this.props.users.findOne({_id:owner.userID}).username})` }
+              <br/>Key Words:
+
+              {' '+item.keywords}
+                <br/>Category:
+                {' '+item.category}
+            </p>
 
           </div>
 
         </div>
-
       )
-
-
     }
 
     else return ("")

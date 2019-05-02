@@ -24,6 +24,8 @@ import CategoryRequest from "./components/CategoryRequest";
 import Requests from "./containers/Requests";
 import CategoryDeletionRequest from "./containers/CategoryDeletionRequest";
 import MyCategories from "./containers/MyCategories";
+import OrdersForMe from "./containers/OdersForMe";
+import MyOrders from "./containers/MyOrders";
 
 
 const BaseRouter = () => (
@@ -60,6 +62,9 @@ const BaseRouter = () => (
       <Route exact path='/delcat/' component={CategoryDeletionRequest} />
 
       <Route exact path='/my_categories/' component={MyCategories} />
+
+      <Route exact path='/orders_for_me/' component={OrdersForMe} />
+      <Route exact path='/my_orders/' component={MyOrders} />
 
 
 

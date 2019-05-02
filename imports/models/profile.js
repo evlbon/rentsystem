@@ -1,5 +1,16 @@
 import { Class } from 'meteor/jagi:astronomy';
 
+const  Rate = Class.create({
+  name: 'Rates',
+  fields: {
+    userID: {
+      type: String,
+    },
+    rate: {
+      type: Number,
+    },
+  }
+});
 
 const Profile = Class.create({                  // Main class of users
   name: 'Profile',
@@ -61,7 +72,17 @@ const Profile = Class.create({                  // Main class of users
       default: false,
     },
 
+    orders: {
+      type: [String],
+      default: [],
+      optional: true,
+    },
 
+    wasRated:{
+      type: [Rate],
+      default: [],
+      optional: true,
+    }
 
   },
 
