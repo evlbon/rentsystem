@@ -8,9 +8,6 @@
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     text-shadow: none ;
-
-
-
 }
 
 
@@ -39,8 +36,7 @@
 }
 
 .userpage{
-    padding: 84px 0 0 0;
-    min-height: 1000px;
+    min-height: 1100px;
     font: normal 30px/1 Arial Black, Gadget, sans-serif;
 }
 
@@ -56,7 +52,7 @@
     left: 0;
     width: 100%;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
     overflow: hidden;
     border: none;
     -webkit-border-radius: 10px;
@@ -81,15 +77,11 @@
     color: gainsboro;
 }
 
-
-
-
 .userpage2{
     font: normal 20px/2 Verdana , Gadget, sans-serif;
-    margin: -20px 5% 0 5%;
-    padding: 70px 0 0 0;
+    margin: 10px 3% 0 3%;
+    padding: 40px 0 20px 0;
     color: #1e1e1e;
-    height: 600px;
 
     overflow: hidden;
     -webkit-border-radius: 10px;

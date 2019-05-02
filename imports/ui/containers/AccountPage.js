@@ -51,9 +51,8 @@ class UserPage extends React.Component {
       // console.log(orders);
       return (
         <div className='userpage' style={{height:1000, background: 'white', color: 'black'}}>
-
-          <div style={{height:'40%', overflow: 'hidden'}}>
-            <div style={{margin:'-200px 0 0 0'}}>
+          <div style={{height:'55%', overflow: 'hidden'}}>
+            <div style={{margin:'-100px 0 0 0'}}>
               <img src='https://i.ibb.co/89zJtwS/Untitled-1.png' alt="1" width="100%"/>
             </div>
             <div className='hello'>
