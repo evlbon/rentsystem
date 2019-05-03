@@ -69,7 +69,38 @@ Meteor.methods({
 
     profile.save();
   },
+
+
+  'rate'(userID,currentUser,rate) {
+    let profile = Profile.findOne({userID});
+    const rating = profile.wasRated.find(r=> r.userID === currentUser);
+
+    console.log(profile.wasRated)
+
+    if(!rating){
+      profile.wasRated.push({userID:currentUser,rate});
+      profile.rating += rate;
+    }
+    else{
+      if(rating.rate===rate){
+        profile.rating -= rate;
+        rating.rate = 0;
+      }
+      else{
+        profile.rating += rate - rating.rate;
+        rating.rate = rate;
+      }
+
+    }
+
+    profile.save();
+  },
+
+
+
 });
+
+
 
 
 

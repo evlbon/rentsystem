@@ -14,6 +14,12 @@ class UserList extends React.Component {
 
   render() {
     // console.log(this.state.current)
+    const current = this.props.profiles.find((p)=>{return p.userID===this.props.currentUser._id});
+
+    if(current.type !== 'admin')
+      return '';
+
+
     return (
       <div style={{minHeight:"900px", background:"white", padding:"70px 0 0 0"}}>
 
@@ -22,7 +28,7 @@ class UserList extends React.Component {
           this.props.profiles && this.props.currentUser?
 
           this.props.profiles.map((user)=>(
-            <UserCard key={user.username} user={user} current={this.props.profiles.find((p)=>{return p.userID===this.props.currentUser._id})}/>
+            <UserCard key={user.username} user={user} current={current}/>
           )):""
         }
 

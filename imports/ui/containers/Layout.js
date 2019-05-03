@@ -60,7 +60,8 @@ class CustomLayout extends React.Component {
             >
               <Menu.Item key="4"><Link to="/">Main Page</Link></Menu.Item>
               <Menu.Item key="1"><Link to="/all_items/">Items</Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/allusers/">Users</Link></Menu.Item>
+
+              {profile && profile.type === 'admin'? <Menu.Item key="2"><Link to="/allusers/">Users</Link></Menu.Item>:''}
 
             </Menu>
           </Header>

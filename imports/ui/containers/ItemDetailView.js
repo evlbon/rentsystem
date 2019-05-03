@@ -2,12 +2,19 @@ import React from 'react';
 
 import {withTracker} from 'meteor/react-meteor-data';
 import Items from '../../models/item';
-import {Button} from "antd";
+import {Button, Icon} from "antd";
 import {Meteor} from "meteor/meteor";
 import Profile from "../../models/profile";
 import Images from "../../models/image";
 
 class ViewItem extends React.Component {
+  increase(userID){
+    Meteor.call('rate',userID,this.props.currentUser._id,1)
+  }
+
+  decrease(userID){
+    Meteor.call('rate',userID,this.props.currentUser._id,-1)
+  }
 
 
 
@@ -17,7 +24,9 @@ class ViewItem extends React.Component {
     const item = this.props.items.findOne({_id: this.props.match.params.id});
 
     if (item) {
-      const owner = this.props.profiles.findOne({userID: item.OwnerID});
+      const owner = this.props.profiles.find(r => r.userID === item.OwnerID);
+      const rating = owner.wasRated.find(r=> r.userID === this.props.currentUser._id);
+      // console.log(owner.wasRated.find( r => r.userID === this.props.currentUser._id))
 
       const img = Images.findOne({ name : item.image});
 
@@ -78,6 +87,14 @@ class ViewItem extends React.Component {
             <br/>
               Owner:
               {` ${owner.firstName} ${owner.lastName} (${this.props.users.findOne({_id:owner.userID}).username})` }
+              {item.OwnerID !== this.props.currentUser._id ?
+                <div>
+                  Rating of owner: {owner.rating+'  '}
+                  <Icon type="like" onClick={()=>this.increase(item.OwnerID)} theme={rating && rating.rate === 1? "twoTone":''} />
+                  <Icon type="dislike" onClick={()=>this.decrease(item.OwnerID)} theme={rating && rating.rate === -1? "twoTone":''}/></div>
+                :''}
+
+
               <br/>Key Words:
 
               {' '+item.keywords}
@@ -99,7 +116,7 @@ export default withTracker(() => {
   return {
     currentUser: Meteor.user(),
     items: Items,
-    profiles: Profile,
+    profiles: Profile.find().fetch(),
     users: Meteor.users,
   };
 })(ViewItem);
