@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button, Icon, Card, Popover} from "antd";
+import {Avatar, Button, Icon, Card, Popover, Badge} from "antd";
 
 import { withTracker } from 'meteor/react-meteor-data';
 import Profile from "../../models/profile";
@@ -46,6 +46,9 @@ class UserPage extends React.Component {
       let orders = [];
       this.props.orders.map(ord=>{if(ord.RenterID === this.props.currentUser._id) orders.push(ord)} );
       orders = orders.sort((a, b) => (a.createdAt > b.createdAt) ? -1 : 1).slice(0, 4);
+
+      let unCheckedOrds = 0;
+      this.props.orders.map(ord=>{if(ord.OwnerID === this.props.currentUser._id && !ord.state.isAccepted && !ord.state.isCanceled) unCheckedOrds += 1} );
 
       console.log(orders)
       // console.log(orders);
@@ -141,7 +144,7 @@ class UserPage extends React.Component {
                 <Button type="primary">Items and Categories</Button>
               </Popover><br/>
 
-              <Button type="primary"  onClick={()=>{this.props.history.push('/orders_for_me/')}}>Orders for me</Button>
+              <Badge count={unCheckedOrds}><Button type="primary"  onClick={()=>{this.props.history.push('/orders_for_me/')}}> Orders for me </Button></Badge>
 
           
           

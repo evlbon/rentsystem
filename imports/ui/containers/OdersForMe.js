@@ -19,6 +19,10 @@ class OrdersForMe extends React.Component {
     if(!this.props.currentUser)
       return '';
 
+    let orders = [];
+    this.props.orders.map(ord=>{if(ord.OwnerID === this.props.currentUser._id) orders.push(ord)} );
+    orders = orders.sort((a, b) => (a.createdAt > b.createdAt) ? -1 : 1);
+
     return (
       <div  style={{height:1000, background: 'white', color: 'black'}}>
 
@@ -27,8 +31,8 @@ class OrdersForMe extends React.Component {
           header={<h1>Orders for me</h1>}
           bordered
           itemLayout="vertical"
-          dataSource={this.props.orders.sort((a, b) => (a.createdAt > b.createdAt) ? -1 : 1)}
-          renderItem={ord=>ord.OwnerID === this.props.currentUser._id?  <Order date = {true} ord = {ord}/>:'' }
+          dataSource={orders}
+          renderItem={ord=><Order date = {true} ord = {ord}/>}
         />
       </div>
     );
